@@ -59,39 +59,14 @@ section + section { border-top: 1px solid var(--line); }
 
 /* hero with the app on a TV */
 .hero { padding: 64px 0 80px; overflow: hidden; }
-.hero .wrap { display: grid; grid-template-columns: 1fr 1.2fr; gap: 56px; align-items: center; }
+.hero .wrap { display: grid; grid-template-columns: 1fr; gap: 48px; }
+.hero .lead { max-width: 60ch; }
 .hero .price-line { font-family: var(--display); font-size: 1.6rem; font-weight: 700; color: var(--gold); margin: 6px 0 22px; }
 .tv { margin: 0; }
-.tv .screen { display: grid; grid-template-columns: 76px 1fr; aspect-ratio: 16 / 9; border: 10px solid #1a1a1a; border-radius: 14px; background: #060504; overflow: hidden;
-  box-shadow: 0 0 0 1px #2c2c2c, 0 40px 90px -30px rgba(242,181,62,.35); font-size: 11px; line-height: 1.3; }
+.tv .shot { width: 100%; height: auto; border: 10px solid #1a1a1a; border-radius: 14px; background: #060504;
+  box-shadow: 0 0 0 1px #2c2c2c, 0 40px 90px -30px rgba(242,181,62,.35); }
 .tv .stand { width: 34%; height: 10px; margin: 0 auto; background: linear-gradient(#222, #111); border-radius: 0 0 10px 10px; }
 .tv figcaption { text-align: center; color: var(--muted); font-size: .85rem; margin-top: 14px; }
-.app-rail { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 14px 6px; background: #0d0b07; border-right: 1px solid #2a2010; }
-.app-rail img { margin-bottom: 6px; }
-.app-rail span { color: #8d826d; font-weight: 600; text-align: center; }
-.app-rail span.on { color: var(--gold); }
-.app-main { padding: 12px 14px; display: grid; grid-template-rows: 1.15fr auto auto; gap: 10px; min-width: 0; }
-.app-hero { border-radius: 8px; padding: 14px 16px; display: flex; align-items: flex-end;
-  background: radial-gradient(120% 140% at 85% 20%, #7a5214 0%, rgba(60,40,10,.6) 35%, transparent 60%),
-              radial-gradient(80% 120% at 65% 90%, #23395a 0%, transparent 55%), linear-gradient(100deg, #050505 30%, #1b140a); }
-.app-hero small { display: block; color: var(--gold); font-weight: 700; }
-.app-hero strong { display: block; font-family: var(--display); font-size: 22px; line-height: 1; color: var(--ivory); margin: 3px 0; }
-.app-hero em { font-style: normal; color: #b9ab90; }
-.app-btns { display: flex; gap: 6px; margin-top: 8px; }
-.app-btns b { background: var(--gold); color: #000; border-radius: 99px; padding: 3px 12px; }
-.app-btns b.ghost { background: transparent; color: var(--ivory); box-shadow: inset 0 0 0 1px #6b5a3a; }
-.app-row p { margin: 0 0 5px; font-weight: 700; color: var(--ivory); }
-.tiles { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7px; }
-.tile { position: relative; aspect-ratio: 16 / 9; border-radius: 6px; overflow: hidden; display: flex; align-items: flex-end; padding: 5px 6px; color: #fff; font-weight: 600;
-  box-shadow: inset 0 -30px 30px -10px rgba(0,0,0,.75); }
-.tile span { position: relative; text-shadow: 0 1px 2px #000; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.tile .prog { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.18); }
-.tile .prog::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--p); background: var(--gold); }
-.tile .live { position: absolute; top: 5px; left: 5px; background: #e5484d; color: #fff; font-size: 9px; padding: 1px 5px; border-radius: 3px; }
-.t1 { background: linear-gradient(135deg, #10314a, #c08a2a); } .t2 { background: linear-gradient(160deg, #2a0f2e, #8a3a52); }
-.t3 { background: linear-gradient(140deg, #0e3b33, #6f8f4a); } .t4 { background: linear-gradient(150deg, #3b2a12, #b8762c); }
-.t5 { background: linear-gradient(150deg, #0c3d1e, #2f8a43); } .t6 { background: linear-gradient(150deg, #2a0909, #b0302a); }
-.t7 { background: linear-gradient(150deg, #1d1d24, #7b7f8c); } .t8 { background: linear-gradient(150deg, #3a1a05, #d0702a); }
 
 /* lists of features */
 .split { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; align-items: start; }
@@ -190,8 +165,4 @@ footer nav a { color: var(--muted); text-decoration: none; } footer nav a:hover 
   section { padding: 64px 0; }
   form.order { grid-template-columns: 1fr; }
   .ticket .main, .ticket .stub { padding: 28px 24px; }
-  .tv .screen { grid-template-columns: 52px 1fr; font-size: 8px; border-width: 7px; }
-  .app-rail { gap: 9px; } .app-rail img { width: 26px; }
-  .app-hero { padding: 9px 10px; } .app-hero strong { font-size: 15px; }
-  .app-main { grid-template-rows: 1.2fr auto; } .app-main .app-row:last-child { display: none; }
 }

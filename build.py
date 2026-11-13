@@ -50,30 +50,9 @@ def page(slug, title, desc, body):
 '''
 
 
-TILES = {
-    'Continue watching': [('The Last Harbour', 't1', 62), ('Night Shift S2', 't2', 35), ('Wild Coast', 't3', 80), ('Paper Kings', 't4', 15)],
-    'Live sport': [('Football', 't5', None), ('Fight night', 't6', None), ('Racing', 't7', None), ('Basketball', 't8', None)],
-}
-
-
 def app_html():
-    rows = ''
-    for title, tiles in TILES.items():
-        cards = ''
-        for name, art, prog in tiles:
-            extra = f'<i class="prog" style="--p:{prog}%"></i>' if prog is not None else '<b class="live">LIVE</b>'
-            cards += f'<div class="tile {art}">{extra}<span>{name}</span></div>'
-        rows += f'<div class="app-row"><p>{title}</p><div class="tiles">{cards}</div></div>'
-    rail = ''.join(f'<span class="{"on" if i == 0 else ""}">{n}</span>' for i, n in enumerate(['Home', 'Live TV', 'Movies', 'Series', 'Search']))
-    return f'''<figure class="tv" aria-label="Mitsflix Player home screen">
-  <div class="screen">
-    <nav class="app-rail"><img src="/assets/mark.png" alt="" width="34" height="34">{rail}</nav>
-    <div class="app-main">
-      <div class="app-hero"><div><small>Tonight’s movie</small><strong>The Last Harbour</strong><em>Thriller · 2h 4m · 4K</em>
-        <span class="app-btns"><b>Play</b><b class="ghost">My list</b></span></div></div>
-      {rows}
-    </div>
-  </div>
+    return '''<figure class="tv">
+  <img class="shot" src="/assets/app-home.jpg" width="1600" height="644" alt="The Mitsflix Player home screen, with a featured movie, Play and Trailer buttons, and a Keep watching row">
   <div class="stand"></div>
   <figcaption>Mitsflix Player, our free app</figcaption>
 </figure>'''
