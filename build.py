@@ -62,7 +62,7 @@ HOME = f'''
 <section class="hero"><div class="wrap">
   <div>
     <h1>One service. Stream all.</h1>
-    <p class="lead">Live TV from around the world, sport and PPV events, and a huge library of movies and series. One login, on the devices you already own.</p>
+    <p class="lead">Live TV from around the world, sport and PPV events, and a huge library of movies and series. Download to watch offline, record live TV, and use one login on the devices you already own.</p>
     <p class="price-line">$100 AUD for a whole year</p>
     <div class="btns"><a class="btn solid" href="/pricing#sign-up">Sign up</a><a class="btn" href="/download">Get the app</a></div>
   </div>
@@ -75,7 +75,9 @@ HOME = f'''
     <li><b>Live channels from around the world</b><span>News, entertainment, kids and local channels from many countries.</span></li>
     <li><b>Sport and PPV events</b><span>Football, fights, racing and more. Our sports guide on Discord shows what’s on in your time zone.</span></li>
     <li><b>Movies and series on demand</b><span>New titles added every day, with posters, plots and trailers.</span></li>
-    <li><b>Our own free app</b><span>Mitsflix Player for Fire TV, Google TV and Android, with Continue Watching, downloads for offline viewing and subtitles built in.</span></li>
+    <li><b>Download movies and shows</b><span>Save them to your device and watch offline, on a plane, at work camp or anywhere without internet.</span></li>
+    <li><b>Record live TV</b><span>Record a match or show while you watch something else, or schedule a time and it records by itself.</span></li>
+    <li><b>Our own free app</b><span>Mitsflix Player for Fire TV, Google TV and Android, with Continue Watching and subtitles built in.</span></li>
     <li><b>Real people helping you</b><span>Private support tickets on Discord, or email us any time.</span></li>
   </ul>
 </div></section>
@@ -102,7 +104,7 @@ HOME = f'''
 '''
 
 DOWNLOAD = '''
-<div class="wrap page-head"><h1>Download</h1><p>Mitsflix Player is free, has no ads and updates itself.</p></div>
+<div class="wrap page-head"><h1>Download</h1><p>Mitsflix Player is free, has no ads and updates itself. Download movies and shows to watch offline, and record live TV.</p></div>
 <section style="padding-top:0"><div class="wrap">
   <div class="rows">
     <div class="row"><h3>Fire TV &amp; Google TV</h3><p>Install the <b>Downloader</b> app, open it and enter this code. It always installs the latest version. <a href="/guides#fire-tv">Step-by-step guide</a></p><div class="code">6284643</div></div>
@@ -172,6 +174,8 @@ PRICING = '''
         <li><b>Sport and PPV events</b></li>
         <li><b>Movies and series on demand</b></li>
         <li><b>Free Mitsflix Player app</b></li>
+        <li><b>Download to watch offline</b></li>
+        <li><b>Record live TV</b></li>
         <li><b>Support on Discord and email</b></li>
       </ul>
     </div>
