@@ -1,0 +1,283 @@
+#!/usr/bin/env python3
+"""Builds the static pages in public/ from the content below. Run: python3 build.py"""
+import pathlib
+
+SITE = 'https://mitsflix.com'
+PAGES = [('index', 'Home'), ('download', 'Download'), ('guides', 'Setup guides'), ('pricing', 'Pricing'), ('support', 'Support')]
+FONTS = 'https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;600;700&display=swap'
+
+
+def page(slug, title, desc, body):
+    nav = '\n'.join(f'<a href="/{"" if s == "index" else s}"{" aria-current=page" if s == slug else ""}>{n}</a>' for s, n in PAGES[1:])
+    full_title = 'Mitsflix | One service. Stream all.' if slug == 'index' else f'{title} | Mitsflix'
+    return f'''<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{full_title}</title>
+<meta name="description" content="{desc}">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="{full_title}">
+<meta property="og:description" content="{desc}">
+<meta property="og:image" content="{SITE}/assets/og.jpg">
+<meta property="og:url" content="{SITE}/{'' if slug == 'index' else slug}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="{FONTS}">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/" aria-label="Mitsflix home"><img src="/assets/wordmark-400.png" alt="Mitsflix" width="118" height="53"></a>
+  <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav">{nav}<a class="btn solid" href="/pricing#sign-up" style="min-height:40px;padding:0 18px">Sign up</a></nav>
+</div></header>
+<main id="main">
+{body}
+</main>
+<footer><div class="wrap">
+  <img src="/assets/wordmark-400.png" alt="Mitsflix" width="140" height="62">
+  <nav>{nav}<a href="/discord">Discord</a><a href="mailto:sales@mitsflix.com">sales@mitsflix.com</a></nav>
+  <p style="margin:0">© Mitsflix. One service. Stream all.</p>
+</div></footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
+'''
+
+
+GUIDE_ROWS = [
+    ('Sport 1', 'Live', [('Pre-match', 2, ''), ('Grand final', 4, 'on'), ('Post-match show', 2, '')]),
+    ('Movies', 'Premiere', [('Friday night blockbuster', 5, 'on'), ('Late movie', 3, '')]),
+    ('Series', 'New episodes', [('Drama S2 E8', 3, ''), ('Comedy', 2, 'on'), ('Thriller', 3, '')]),
+    ('Kids', 'All day', [('Cartoons', 4, 'on'), ('Family movie', 4, '')]),
+    ('News', '24/7', [('World news', 4, 'on'), ('Business tonight', 4, '')]),
+]
+
+
+def guide_html():
+    rows = ''
+    for ch, sub, slots in GUIDE_ROWS:
+        s = ''.join(f'<div class="slot {cls}" style="grid-column:span {span}">{name}</div>' for name, span, cls in slots)
+        rows += f'<div class="guide-row"><div class="ch"><b>{ch}</b><small>{sub}</small></div><div class="slots">{s}</div></div>'
+    return f'''<div class="guide" aria-hidden="true">
+  <div class="guide-bar"><strong><span class="live-dot"></span>TV guide</strong><span>Mitsflix Player</span></div>
+  <div class="guide-times"><div></div><div><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></div></div>
+  {rows}
+  <div class="playhead"></div>
+</div>'''
+
+
+HOME = f'''
+<section class="hero"><div class="wrap">
+  <div>
+    <h1>One service. Stream all.</h1>
+    <p class="lead">Live TV from around the world, sport and PPV events, and a huge library of movies and series. One login, on the devices you already own.</p>
+    <p class="price-line">$100 AUD for a whole year</p>
+    <div class="btns"><a class="btn solid" href="/pricing#sign-up">Sign up</a><a class="btn" href="/download">Get the app</a></div>
+  </div>
+  {guide_html()}
+</div></section>
+
+<section><div class="wrap split">
+  <div><h2>What you get</h2><p class="muted">Everything is included in the one price. No add-on packs, no lock-in contract.</p></div>
+  <ul class="ticks">
+    <li><b>Live channels with a full TV guide</b><span>News, entertainment, kids and local channels from many countries, with a guide that fills in by itself.</span></li>
+    <li><b>Sport and PPV events</b><span>Football, fights, racing and more. Our sports guide on Discord shows what’s on in your time zone.</span></li>
+    <li><b>Movies and series on demand</b><span>New titles added every day, with posters, plots and trailers.</span></li>
+    <li><b>Our own free app</b><span>Mitsflix Player for Fire TV, Google TV and Android, with downloads for offline viewing and subtitles built in.</span></li>
+    <li><b>Real people helping you</b><span>Private support tickets on Discord, or email us any time.</span></li>
+  </ul>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Up and running in minutes</h2>
+  <ol class="steps">
+    <li><b>Sign up</b><span>Fill in the short form. We email you payment options.</span></li>
+    <li><b>Get your login</b><span>Once paid, your username and password arrive by email.</span></li>
+    <li><b>Install and watch</b><span>Install Mitsflix Player with Downloader code 6284643, add your login and press play.</span></li>
+  </ol>
+  <div class="btns" style="margin-top:36px"><a class="btn solid" href="/pricing#sign-up">Sign up</a><a class="btn" href="/guides">See the setup guides</a></div>
+</div></section>
+
+<section><div class="wrap split">
+  <div><h2>Works on</h2><p class="muted">One screen at a time on any of these.</p></div>
+  <ul class="ticks">
+    <li><b>Fire TV and Google TV</b><span>Fire TV Stick 4K Max or Google TV Streamer 4K recommended.</span></li>
+    <li><b>Android TV boxes, phones and tablets</b><span>Mitsflix Player, free.</span></li>
+    <li><b>iPhone, iPad and Apple TV</b><span>Use TiviMax from the App Store.</span></li>
+    <li><b>Smart TVs and computers</b><span>Any IPTV player that supports Xtream Codes.</span></li>
+  </ul>
+</div></section>
+'''
+
+DOWNLOAD = '''
+<div class="wrap page-head"><h1>Download</h1><p>Mitsflix Player is free, has no ads and updates itself.</p></div>
+<section style="padding-top:0"><div class="wrap">
+  <div class="rows">
+    <div class="row"><h3>Fire TV &amp; Google TV</h3><p>Install the <b>Downloader</b> app, open it and enter this code. It always installs the latest version. <a href="/guides#fire-tv">Step-by-step guide</a></p><div class="code">6284643</div></div>
+    <div class="row"><h3>Android phone or tablet</h3><p>Download the APK file and open it to install. <a href="/guides#android">Step-by-step guide</a></p><a class="btn solid" href="/android">Download APK</a></div>
+    <div class="row"><h3>Windows <span class="tag">Beta</span></h3><p>Mitsflix Player for Windows 10 and 11. If Windows shows a blue warning, choose <b>More info</b>, then <b>Run anyway</b>.</p><a class="btn" href="/windows">Download for Windows</a></div>
+    <div class="row"><h3>iPhone, iPad &amp; Apple TV</h3><p>Install <b>TiviMax</b> from the App Store and add your Mitsflix login. <a href="/guides#apple">Step-by-step guide</a></p><a class="btn" href="https://apps.apple.com/search?term=tivimax">Open App Store</a></div>
+  </div>
+  <p class="muted" style="margin-top:28px">Fire TV and Android need Android 8 or newer. Fire TV Sticks with <b>Select</b> or <b>HD</b> in the name aren’t powerful enough.</p>
+</div></section>
+'''
+
+STEP4 = '''<ol class="do">
+  <li>Open the app and choose <b>Add playlist</b>, then <b>Xtream Codes</b>.</li>
+  <li><b>Server:</b> <code>http://cf.126762.xyz</code></li>
+  <li><b>Username</b> and <b>Password:</b> the login we emailed you.</li>
+  <li>Save. Live TV, movies, series and the TV guide load by themselves.</li>
+</ol>'''
+
+GUIDES = f'''
+<div class="wrap page-head"><h1>Setup guides</h1><p>Pick your device. Each guide takes about five minutes.</p>
+<ul class="guide-nav"><li><a href="#fire-tv">Fire TV &amp; Google TV</a></li><li><a href="#android">Android phone</a></li><li><a href="#apple">Apple</a></li><li><a href="#servers">Server addresses</a></li><li><a href="#fixes">Buffering fixes</a></li></ul></div>
+
+<div class="wrap">
+<article class="howto" id="fire-tv"><h2>Fire TV, Google TV &amp; Android TV</h2>
+  <h3>Install Downloader</h3>
+  <ol class="do"><li>Go to <b>Search</b>. On Google TV, open the <b>Play Store</b>.</li><li>Type <b>Downloader</b>.</li><li>Install the orange <b>Downloader</b> app.</li></ol>
+  <h3>Allow unknown apps</h3>
+  <ol class="do"><li><b>Fire TV:</b> Settings, My Fire TV, Developer Options, Install Unknown Apps, then turn <b>Downloader</b> on.</li>
+  <li><b>Google TV:</b> Settings, Apps, Security &amp; restrictions, Unknown sources, then turn <b>Downloader</b> on.</li></ol>
+  <p class="note">No Developer Options on your Fire TV? Go to Settings, My Fire TV, About, click <b>Fire TV Stick</b> seven times, then go back.</p>
+  <h3>Install Mitsflix Player</h3>
+  <ol class="do"><li>Open <b>Downloader</b>.</li><li>Enter code <b>6284643</b> and press <b>Go</b>.</li><li>Press <b>Install</b>, then <b>Open</b>.</li></ol>
+  <h3>Add your login</h3>{STEP4}
+</article>
+
+<article class="howto" id="android"><h2>Android phone or tablet</h2>
+  <ol class="do"><li>On your phone, <a href="/android">download the Mitsflix Player APK</a>.</li><li>Open the file. If asked, allow your browser to install unknown apps, then press <b>Install</b>.</li></ol>
+  <h3>Add your login</h3>{STEP4}
+</article>
+
+<article class="howto" id="apple"><h2>iPhone, iPad &amp; Apple TV</h2>
+  <ol class="do"><li>Install <b>TiviMax</b> from the App Store. The Premium lifetime unlock is worth it.</li>
+  <li>Add a playlist using <b>Xtream Codes</b>.</li><li><b>Server:</b> <code>http://cf.126762.xyz</code></li><li><b>Username</b> and <b>Password:</b> the login we emailed you.</li></ol>
+</article>
+
+<article class="howto" id="servers"><h2>Server addresses</h2>
+  <p>If one stops working, edit your playlist and switch to another. Type them exactly, without a <code>/</code> at the end.</p>
+  <h3>Standard</h3>
+  <ul class="addr"><li><code>http://cf.126762.xyz</code></li><li><code>http://cf.1050263.xyz</code></li><li><code>http://cf.8899987.xyz</code></li><li><code>http://pro.126762.xyz</code></li><li><code>http://pro.1050263.xyz</code></li><li><code>http://pro.8899987.xyz</code></li></ul>
+  <h3>Only while a VPN is on</h3>
+  <ul class="addr"><li><code>http://apps.126762.xyz</code></li><li><code>http://apps.1050263.xyz</code></li><li><code>http://apps.8899987.xyz</code></li></ul>
+  <p class="note">Turned your VPN off? Switch back to a standard address, or the app won’t connect.</p>
+</article>
+
+<article class="howto" id="fixes"><h2>Buffering or not loading</h2>
+  <ol class="do">
+    <li><b>Try another server address</b> from the list above.</li>
+    <li><b>Restart</b> the app, your device and your modem.</li>
+    <li><b>Use Cloudflare DNS on your modem:</b> primary <code>1.1.1.1</code>, secondary <code>1.0.0.1</code>. Turning off IPv6 in the modem can help too.</li>
+    <li><b>Try a VPN</b> connected to a US or European server, not one near Australia, and use a VPN-only address.</li>
+  </ol>
+  <p>Still stuck? <a href="/support">Get help</a>.</p>
+</article>
+</div>
+'''
+
+PRICING = '''
+<div class="wrap page-head"><h1>Pricing</h1><p>One plan with everything in it.</p></div>
+<section style="padding-top:0"><div class="wrap">
+  <div class="ticket">
+    <div class="main">
+      <h2 style="margin-bottom:.2em">12 months of Mitsflix</h2>
+      <p class="muted">Admit one screen at a time.</p>
+      <ul class="ticks" style="margin-top:20px">
+        <li><b>Live channels with TV guide</b></li>
+        <li><b>Sport and PPV events</b></li>
+        <li><b>Movies and series on demand</b></li>
+        <li><b>Free Mitsflix Player app</b></li>
+        <li><b>Support on Discord and email</b></li>
+      </ul>
+    </div>
+    <div class="stub">
+      <div class="amount"><sup>$</sup>100</div>
+      <div class="per">AUD for 12 months</div>
+      <a class="btn solid" href="#sign-up">Sign up</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="sign-up"><div class="wrap split">
+  <div>
+    <h2>Sign up</h2>
+    <p>Tell us a little about how you’ll watch. We’ll email you payment options, and your login arrives as soon as payment comes through.</p>
+    <p class="muted">Prefer Discord? Use the Sign up button in <a href="/discord">our server</a>.</p>
+  </div>
+  <form class="order" data-done="Thanks! We’ve got your details and will email you payment options shortly.">
+    <input type="hidden" name="kind" value="signup">
+    <label>Name<input name="name" autocomplete="name" required maxlength="100"></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+    <label>Phone or WhatsApp <small>Optional</small><input name="phone" autocomplete="tel" maxlength="40"></label>
+    <label>What will you watch on?
+      <select name="device" required><option value="">Choose a device</option><option>Fire TV Stick</option><option>Google TV / Android TV</option><option>Android phone or tablet</option><option>iPhone, iPad or Apple TV</option><option>Smart TV</option><option>Computer</option><option>Not sure yet</option></select></label>
+    <label class="full">Anything we should set up? <small>Optional, e.g. English channels only, adult channels on or off</small><textarea name="prefs" maxlength="800"></textarea></label>
+    <label class="full">How did you hear about us? <small>Optional</small><input name="found" maxlength="200"></label>
+    <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+    <div class="full"><button class="btn solid" type="submit">Send my details</button></div>
+    <p class="form-msg" role="status" aria-live="polite"></p>
+  </form>
+</div></section>
+
+<section id="resellers"><div class="wrap split">
+  <div>
+    <h2>Become a reseller</h2>
+    <p>Sell Mitsflix to your own customers with your own reseller panel. Create, renew and manage accounts any time, with private server addresses and help from us when you need it.</p>
+    <p class="muted">We’ll send reseller pricing and set up your panel by email.</p>
+  </div>
+  <form class="order" data-done="Thanks! We’ll email you reseller pricing and next steps.">
+    <input type="hidden" name="kind" value="reseller">
+    <label>Name<input name="name" autocomplete="name" required maxlength="100"></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+    <label>Where are you based?<input name="where" required maxlength="100"></label>
+    <label>How many customers do you expect?<input name="size" required maxlength="40" placeholder="e.g. 5, 20, 50+"></label>
+    <label class="full">Have you resold IPTV before? <small>Optional</small><textarea name="exp" maxlength="800"></textarea></label>
+    <label>Phone or WhatsApp <small>Optional</small><input name="phone" autocomplete="tel" maxlength="40"></label>
+    <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+    <div class="full"><button class="btn solid" type="submit">Send enquiry</button></div>
+    <p class="form-msg" role="status" aria-live="polite"></p>
+  </form>
+</div></section>
+'''
+
+SUPPORT = '''
+<div class="wrap page-head"><h1>Support</h1><p>Most questions are answered in the <a href="/guides">setup guides</a>. If not, we’re here.</p></div>
+<section style="padding-top:0"><div class="wrap">
+  <div class="contact">
+    <div><h3>Discord</h3><p>The fastest way to reach us. Open a private ticket for account help, report a channel that isn’t working, request a movie or show, and see live service updates.</p><a class="btn solid" href="/discord">Join our Discord</a></div>
+    <div><h3>Email</h3><p>Prefer email? Write to us and include your Mitsflix username if you have one.</p><a class="btn" href="mailto:sales@mitsflix.com">sales@mitsflix.com</a></div>
+  </div>
+</div></section>
+<section><div class="wrap">
+  <h2>Questions</h2>
+  <details><summary>How many screens can I watch on?</summary><p>One at a time. You can install the app on as many devices as you like, but only one can play at once.</p></details>
+  <details><summary>Which device should I buy?</summary><p>A Google TV Streamer 4K or a Fire TV Stick 4K Max. Avoid Fire TV Sticks with Select or HD in the name, they aren’t powerful enough.</p></details>
+  <details><summary>How do I pay?</summary><p>After you sign up we email you the payment options. Your login is sent as soon as payment comes through.</p></details>
+  <details><summary>A channel isn’t working. What do I do?</summary><p>First try another server address from the <a href="/guides#servers">list</a>. If it still won’t play, report it in our Discord and we’ll look into it.</p></details>
+  <details><summary>It keeps buffering.</summary><p>Follow the <a href="/guides#fixes">buffering fixes</a>. Switching server address or setting Cloudflare DNS on your modem fixes most cases.</p></details>
+  <details><summary>Can I use my own IPTV app?</summary><p>Yes. Any app that supports Xtream Codes works. Use one of our <a href="/guides#servers">server addresses</a> with your username and password.</p></details>
+  <details><summary>Can I ask for a movie or show to be added?</summary><p>Yes. Use the Make a request channel in our Discord.</p></details>
+</div></section>
+'''
+
+CONTENT = {
+    'index': ('Home', 'Live TV, sport, movies and series in one service. $100 AUD a year, with our free Mitsflix Player app.', HOME),
+    'download': ('Download', 'Download Mitsflix Player for Fire TV, Google TV, Android and Windows. Downloader code 6284643.', DOWNLOAD),
+    'guides': ('Setup guides', 'Step-by-step setup for Fire TV, Google TV, Android and Apple, plus server addresses and buffering fixes.', GUIDES),
+    'pricing': ('Pricing', 'Mitsflix is $100 AUD for 12 months. Sign up or become a reseller.', PRICING),
+    'support': ('Support', 'Get help with Mitsflix on Discord or by email.', SUPPORT),
+}
+
+out = pathlib.Path(__file__).parent / 'public'
+for slug, (title, desc, body) in CONTENT.items():
+    (out / f'{slug}.html').write_text(page(slug, title, desc, body))
+(out / '404.html').write_text(page('404', 'Page not found', 'Page not found.', '<div class="wrap page-head"><h1>Page not found</h1><p>That page doesn’t exist. Try the <a href="/">home page</a>.</p></div>'))
+print('built', len(CONTENT) + 1, 'pages')

@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing | Mitsflix</title>
+<meta name="description" content="Mitsflix is $100 AUD for 12 months. Sign up or become a reseller.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Pricing | Mitsflix">
+<meta property="og:description" content="Mitsflix is $100 AUD for 12 months. Sign up or become a reseller.">
+<meta property="og:image" content="https://mitsflix.com/assets/og.jpg">
+<meta property="og:url" content="https://mitsflix.com/pricing">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/" aria-label="Mitsflix home"><img src="/assets/wordmark-400.png" alt="Mitsflix" width="118" height="53"></a>
+  <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav"><a href="/download">Download</a>
+<a href="/guides">Setup guides</a>
+<a href="/pricing" aria-current=page>Pricing</a>
+<a href="/support">Support</a><a class="btn solid" href="/pricing#sign-up" style="min-height:40px;padding:0 18px">Sign up</a></nav>
+</div></header>
+<main id="main">
+
+<div class="wrap page-head"><h1>Pricing</h1><p>One plan with everything in it.</p></div>
+<section style="padding-top:0"><div class="wrap">
+  <div class="ticket">
+    <div class="main">
+      <h2 style="margin-bottom:.2em">12 months of Mitsflix</h2>
+      <p class="muted">Admit one screen at a time.</p>
+      <ul class="ticks" style="margin-top:20px">
+        <li><b>Live channels with TV guide</b></li>
+        <li><b>Sport and PPV events</b></li>
+        <li><b>Movies and series on demand</b></li>
+        <li><b>Free Mitsflix Player app</b></li>
+        <li><b>Support on Discord and email</b></li>
+      </ul>
+    </div>
+    <div class="stub">
+      <div class="amount"><sup>$</sup>100</div>
+      <div class="per">AUD for 12 months</div>
+      <a class="btn solid" href="#sign-up">Sign up</a>
+    </div>
+  </div>
+</div></section>
+
+<section id="sign-up"><div class="wrap split">
+  <div>
+    <h2>Sign up</h2>
+    <p>Tell us a little about how you’ll watch. We’ll email you payment options, and your login arrives as soon as payment comes through.</p>
+    <p class="muted">Prefer Discord? Use the Sign up button in <a href="/discord">our server</a>.</p>
+  </div>
+  <form class="order" data-done="Thanks! We’ve got your details and will email you payment options shortly.">
+    <input type="hidden" name="kind" value="signup">
+    <label>Name<input name="name" autocomplete="name" required maxlength="100"></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+    <label>Phone or WhatsApp <small>Optional</small><input name="phone" autocomplete="tel" maxlength="40"></label>
+    <label>What will you watch on?
+      <select name="device" required><option value="">Choose a device</option><option>Fire TV Stick</option><option>Google TV / Android TV</option><option>Android phone or tablet</option><option>iPhone, iPad or Apple TV</option><option>Smart TV</option><option>Computer</option><option>Not sure yet</option></select></label>
+    <label class="full">Anything we should set up? <small>Optional, e.g. English channels only, adult channels on or off</small><textarea name="prefs" maxlength="800"></textarea></label>
+    <label class="full">How did you hear about us? <small>Optional</small><input name="found" maxlength="200"></label>
+    <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+    <div class="full"><button class="btn solid" type="submit">Send my details</button></div>
+    <p class="form-msg" role="status" aria-live="polite"></p>
+  </form>
+</div></section>
+
+<section id="resellers"><div class="wrap split">
+  <div>
+    <h2>Become a reseller</h2>
+    <p>Sell Mitsflix to your own customers with your own reseller panel. Create, renew and manage accounts any time, with private server addresses and help from us when you need it.</p>
+    <p class="muted">We’ll send reseller pricing and set up your panel by email.</p>
+  </div>
+  <form class="order" data-done="Thanks! We’ll email you reseller pricing and next steps.">
+    <input type="hidden" name="kind" value="reseller">
+    <label>Name<input name="name" autocomplete="name" required maxlength="100"></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+    <label>Where are you based?<input name="where" required maxlength="100"></label>
+    <label>How many customers do you expect?<input name="size" required maxlength="40" placeholder="e.g. 5, 20, 50+"></label>
+    <label class="full">Have you resold IPTV before? <small>Optional</small><textarea name="exp" maxlength="800"></textarea></label>
+    <label>Phone or WhatsApp <small>Optional</small><input name="phone" autocomplete="tel" maxlength="40"></label>
+    <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+    <div class="full"><button class="btn solid" type="submit">Send enquiry</button></div>
+    <p class="form-msg" role="status" aria-live="polite"></p>
+  </form>
+</div></section>
+
+</main>
+<footer><div class="wrap">
+  <img src="/assets/wordmark-400.png" alt="Mitsflix" width="140" height="62">
+  <nav><a href="/download">Download</a>
+<a href="/guides">Setup guides</a>
+<a href="/pricing" aria-current=page>Pricing</a>
+<a href="/support">Support</a><a href="/discord">Discord</a><a href="mailto:sales@mitsflix.com">sales@mitsflix.com</a></nav>
+  <p style="margin:0">© Mitsflix. One service. Stream all.</p>
+</div></footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>
