@@ -130,14 +130,13 @@ DOWNLOAD = '''
 
 STEP4 = '''<ol class="do">
   <li>Open the app and choose <b>Add playlist</b>, then <b>Xtream Codes</b>.</li>
-  <li><b>Server:</b> <code>http://cf.126762.xyz</code></li>
-  <li><b>Username</b> and <b>Password:</b> the login we emailed you.</li>
+  <li><b>Server</b>, <b>Username</b> and <b>Password:</b> copy them exactly from the welcome email we sent you.</li>
   <li>Save. Live TV, movies, series and the TV guide load by themselves.</li>
 </ol>'''
 
 GUIDES = f'''
 <div class="wrap page-head"><h1>Setup guides</h1><p>Pick your device. Each guide takes about five minutes.</p>
-<ul class="guide-nav"><li><a href="#fire-tv">Fire TV &amp; Google TV</a></li><li><a href="#android">Android phone</a></li><li><a href="#apple">Apple</a></li><li><a href="#servers">Server addresses</a></li><li><a href="#fixes">Buffering fixes</a></li></ul></div>
+<ul class="guide-nav"><li><a href="#fire-tv">Fire TV &amp; Google TV</a></li><li><a href="#android">Android phone</a></li><li><a href="#apple">Apple</a></li><li><a href="#fixes">Buffering fixes</a></li></ul></div>
 
 <div class="wrap">
 <article class="howto" id="fire-tv"><h2>Fire TV, Google TV &amp; Android TV</h2>
@@ -159,24 +158,16 @@ GUIDES = f'''
 
 <article class="howto" id="apple"><h2>iPhone, iPad &amp; Apple TV</h2>
   <ol class="do"><li>Install <b>TiviMax</b> from the App Store. The Premium lifetime unlock is worth it.</li>
-  <li>Add a playlist using <b>Xtream Codes</b>.</li><li><b>Server:</b> <code>http://cf.126762.xyz</code></li><li><b>Username</b> and <b>Password:</b> the login we emailed you.</li></ol>
+  <li>Add a playlist using <b>Xtream Codes</b>.</li><li><b>Server</b>, <b>Username</b> and <b>Password:</b> copy them exactly from the welcome email we sent you.</li></ol>
 </article>
 
-<article class="howto" id="servers"><h2>Server addresses</h2>
-  <p>If one stops working, edit your playlist and switch to another. Type them exactly, without a <code>/</code> at the end.</p>
-  <h3>Standard</h3>
-  <ul class="addr"><li><code>http://cf.126762.xyz</code></li><li><code>http://cf.1050263.xyz</code></li><li><code>http://cf.8899987.xyz</code></li><li><code>http://pro.126762.xyz</code></li><li><code>http://pro.1050263.xyz</code></li><li><code>http://pro.8899987.xyz</code></li></ul>
-  <h3>Only while a VPN is on</h3>
-  <ul class="addr"><li><code>http://apps.126762.xyz</code></li><li><code>http://apps.1050263.xyz</code></li><li><code>http://apps.8899987.xyz</code></li></ul>
-  <p class="note">Turned your VPN off? Switch back to a standard address, or the app won’t connect.</p>
-</article>
 
 <article class="howto" id="fixes"><h2>Buffering or not loading</h2>
   <ol class="do">
-    <li><b>Try another server address</b> from the list above.</li>
+    <li><b>Try another server address.</b> Your welcome email has backups, or ask us for one.</li>
     <li><b>Restart</b> the app, your device and your modem.</li>
     <li><b>Use Cloudflare DNS on your modem:</b> primary <code>1.1.1.1</code>, secondary <code>1.0.0.1</code>. Turning off IPv6 in the modem can help too.</li>
-    <li><b>Try a VPN</b> connected to a US or European server, not one near Australia, and use a VPN-only address.</li>
+    <li><b>Try a VPN</b> connected to a US or European server, not one near Australia. Ask us for the VPN server address to use with it.</li>
   </ol>
   <p>Still stuck? <a href="/support">Get help</a>.</p>
 </article>
@@ -261,9 +252,9 @@ SUPPORT = '''
   <details><summary>How many screens can I watch on?</summary><p>One at a time. You can install the app on as many devices as you like, but only one can play at once.</p></details>
   <details><summary>Which device should I buy?</summary><p>A Google TV Streamer 4K or a Fire TV Stick 4K Max. Avoid Fire TV Sticks with Select or HD in the name, they aren’t powerful enough.</p></details>
   <details><summary>How do I pay?</summary><p>After you sign up we email you the payment options. Your login is sent as soon as payment comes through.</p></details>
-  <details><summary>A channel isn’t working. What do I do?</summary><p>First try another server address from the <a href="/guides#servers">list</a>. If it still won’t play, report it in our Discord and we’ll look into it.</p></details>
-  <details><summary>It keeps buffering.</summary><p>Follow the <a href="/guides#fixes">buffering fixes</a>. Switching server address or setting Cloudflare DNS on your modem fixes most cases.</p></details>
-  <details><summary>Can I use my own IPTV app?</summary><p>Yes. Any app that supports Xtream Codes works. Use one of our <a href="/guides#servers">server addresses</a> with your username and password.</p></details>
+  <details><summary>A channel isn’t working. What do I do?</summary><p>First try one of the backup server addresses from your welcome email. If it still won’t play, report it in our Discord and we’ll look into it.</p></details>
+  <details><summary>It keeps buffering.</summary><p>Follow the <a href="/guides#fixes">buffering fixes</a>. Switching to a backup server address or setting Cloudflare DNS on your modem fixes most cases.</p></details>
+  <details><summary>Can I use my own IPTV app?</summary><p>Yes. Any app that supports Xtream Codes works. Use the server, username and password from your welcome email.</p></details>
   <details><summary>Can I ask for a movie or show to be added?</summary><p>Yes. Use the Make a request channel in our Discord.</p></details>
 </div></section>
 '''
@@ -271,7 +262,7 @@ SUPPORT = '''
 CONTENT = {
     'index': ('Home', 'Live TV, sport, movies and series in one service. $100 AUD a year, with our free Mitsflix Player app.', HOME),
     'download': ('Download', 'Download Mitsflix Player for Fire TV, Google TV, Android and Windows. Downloader code 6284643.', DOWNLOAD),
-    'guides': ('Setup guides', 'Step-by-step setup for Fire TV, Google TV, Android and Apple, plus server addresses and buffering fixes.', GUIDES),
+    'guides': ('Setup guides', 'Step-by-step setup for Fire TV, Google TV, Android and Apple, plus buffering fixes.', GUIDES),
     'pricing': ('Pricing', 'Mitsflix is $100 AUD for 12 months. Sign up or become a reseller.', PRICING),
     'support': ('Support', 'Get help with Mitsflix on Discord or by email.', SUPPORT),
 }
