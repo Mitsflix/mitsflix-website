@@ -19,3 +19,10 @@ jobs:
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ]; then echo "::error::Add CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID secrets to this repo."; exit 1; fi
           npx --yes wrangler@3 deploy
+      - name: Check the site and downloads
+        run: |
+          sleep 5
+          for p in / /download /resellers /android /windows /discord; do
+            printf '%-11s ' "$p"; curl -s -o /dev/null -r 0-99 -w '%{http_code} %{content_type} %{redirect_url}\n' "https://mitsflix-site.sales-eea.workers.dev$p"
+          done
+          printf 'mitsflix.com '; curl -s -o /dev/null -w '%{http_code} %{redirect_url}\n' https://mitsflix.com/ || echo 'not reachable yet'
