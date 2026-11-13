@@ -3,7 +3,7 @@
 import pathlib
 
 SITE = 'https://mitsflix.com'
-PAGES = [('index', 'Home'), ('download', 'Download'), ('guides', 'Setup guides'), ('pricing', 'Pricing'), ('support', 'Support')]
+PAGES = [('index', 'Home'), ('download', 'Download'), ('guides', 'Setup guides'), ('pricing', 'Pricing'), ('resellers', 'Resellers'), ('support', 'Support')]
 FONTS = 'https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;600;700&display=swap'
 
 
@@ -218,11 +218,42 @@ PRICING = '''
   </form>
 </div></section>
 
-<section id="resellers"><div class="wrap split">
+<section><div class="wrap">
+  <h2>Selling to friends or customers?</h2>
+  <p>Mitsflix has a reseller program with your own panel. <a href="/resellers">See how it works</a>.</p>
+</div></section>
+'''
+
+RESELLERS = '''
+<div class="wrap page-head"><h1>Become a Mitsflix reseller</h1><p>Sell Mitsflix to your own customers, set your own prices and manage every account yourself.</p>
+<div class="btns"><a class="btn solid" href="#apply">Apply now</a><a class="btn" href="/discord">Ask us on Discord</a></div></div>
+
+<section style="padding-top:24px"><div class="wrap split">
+  <div><h2>What you get</h2><p class="muted">Everything you need to run your own little streaming business.</p></div>
+  <ul class="ticks">
+    <li><b>Your own reseller panel</b><span>Create trials, new accounts and renewals yourself, any time of day, without waiting on us.</span></li>
+    <li><b>Credits you buy upfront</b><span>Load credits and use them as you sell. You set what your customers pay.</span></li>
+    <li><b>Private server addresses</b><span>Addresses just for resellers, so your customers get a smoother connection.</span></li>
+    <li><b>A free app for your customers</b><span>Mitsflix Player installs with one Downloader code and updates itself. Setup guides are ready to share.</span></li>
+    <li><b>Updates first</b><span>Service news, outages and fixes as they happen, so you can keep your customers informed.</span></li>
+    <li><b>Help when you need it</b><span>A direct line to us on Discord or email for anything your customers get stuck on.</span></li>
+  </ul>
+</div></section>
+
+<section><div class="wrap">
+  <h2>How it works</h2>
+  <ol class="steps">
+    <li><b>Apply</b><span>Fill in the form below. It takes a minute.</span></li>
+    <li><b>Get your panel</b><span>We email you reseller pricing and set up your panel login.</span></li>
+    <li><b>Start selling</b><span>Load credits, create accounts for your customers and send them the setup guide.</span></li>
+  </ol>
+</div></section>
+
+<section id="apply"><div class="wrap split">
   <div>
-    <h2>Become a reseller</h2>
-    <p>Sell Mitsflix to your own customers with your own reseller panel. Create, renew and manage accounts any time, with private server addresses and help from us when you need it.</p>
-    <p class="muted">We’ll send reseller pricing and set up your panel by email.</p>
+    <h2>Apply</h2>
+    <p>Tell us a bit about yourself and we’ll be in touch by email with pricing and next steps.</p>
+    <p class="muted">Questions first? Email <a href="mailto:sales@mitsflix.com">sales@mitsflix.com</a> or ask on <a href="/discord">Discord</a>.</p>
   </div>
   <form class="order" data-done="Thanks! We’ll email you reseller pricing and next steps.">
     <input type="hidden" name="kind" value="reseller">
@@ -233,9 +264,18 @@ PRICING = '''
     <label class="full">Have you resold IPTV before? <small>Optional</small><textarea name="exp" maxlength="800"></textarea></label>
     <label>Phone or WhatsApp <small>Optional</small><input name="phone" autocomplete="tel" maxlength="40"></label>
     <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
-    <div class="full"><button class="btn solid" type="submit">Send enquiry</button></div>
+    <div class="full"><button class="btn solid" type="submit">Apply to resell</button></div>
     <p class="form-msg" role="status" aria-live="polite"></p>
   </form>
+</div></section>
+
+<section><div class="wrap">
+  <h2>Questions</h2>
+  <details><summary>How much does it cost?</summary><p>Reseller pricing depends on how many credits you buy. We send the current price list when you apply.</p></details>
+  <details><summary>How do I set my prices?</summary><p>That’s up to you. You buy credits from us and charge your customers whatever you like.</p></details>
+  <details><summary>Can I offer free trials?</summary><p>Yes. Your panel can create short trial accounts so customers can test before they buy.</p></details>
+  <details><summary>How many screens does each account get?</summary><p>Each account plays on one screen at a time.</p></details>
+  <details><summary>What do my customers use to watch?</summary><p>Mitsflix Player on Fire TV, Google TV and Android, TiviMax on Apple devices, or any app that supports Xtream Codes. Point them to our <a href="/guides">setup guides</a>.</p></details>
 </div></section>
 '''
 
@@ -263,7 +303,8 @@ CONTENT = {
     'index': ('Home', 'Live TV, sport, movies and series in one service. $100 AUD a year, with our free Mitsflix Player app.', HOME),
     'download': ('Download', 'Download Mitsflix Player for Fire TV, Google TV, Android and Windows. Downloader code 6284643.', DOWNLOAD),
     'guides': ('Setup guides', 'Step-by-step setup for Fire TV, Google TV, Android and Apple, plus buffering fixes.', GUIDES),
-    'pricing': ('Pricing', 'Mitsflix is $100 AUD for 12 months. Sign up or become a reseller.', PRICING),
+    'pricing': ('Pricing', 'Mitsflix is $100 AUD for 12 months. Sign up in a minute.', PRICING),
+    'resellers': ('Resellers', 'Sell Mitsflix with your own reseller panel. Create and renew accounts yourself and set your own prices.', RESELLERS),
     'support': ('Support', 'Get help with Mitsflix on Discord or by email.', SUPPORT),
 }
 
