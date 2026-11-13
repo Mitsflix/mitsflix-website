@@ -7,14 +7,6 @@
     btn.textContent = open ? 'Close' : 'Menu';
   });
 
-  // Guide header shows the visitor's own time, so the gold "now" line is really now.
-  const times = document.querySelectorAll('.guide-times span');
-  if (times.length) {
-    const start = new Date(); start.setMinutes(start.getMinutes() < 30 ? 0 : 30, 0, 0); start.setTime(start.getTime() - 30 * 60000);
-    const fmt = new Intl.DateTimeFormat(undefined, { hour: 'numeric', minute: '2-digit' });
-    times.forEach((el, i) => { el.textContent = fmt.format(new Date(start.getTime() + i * 30 * 60000)); });
-  }
-
   // Sign-up and reseller forms go straight to the Mitsflix team.
   document.querySelectorAll('form.order').forEach((form) => {
     const msg = form.querySelector('.form-msg'), submit = form.querySelector('button[type=submit]');

@@ -50,26 +50,33 @@ def page(slug, title, desc, body):
 '''
 
 
-GUIDE_ROWS = [
-    ('Sport 1', 'Live', [('Pre-match', 2, ''), ('Grand final', 4, 'on'), ('Post-match show', 2, '')]),
-    ('Movies', 'Premiere', [('Friday night blockbuster', 5, 'on'), ('Late movie', 3, '')]),
-    ('Series', 'New episodes', [('Drama S2 E8', 3, ''), ('Comedy', 2, 'on'), ('Thriller', 3, '')]),
-    ('Kids', 'All day', [('Cartoons', 4, 'on'), ('Family movie', 4, '')]),
-    ('News', '24/7', [('World news', 4, 'on'), ('Business tonight', 4, '')]),
-]
+TILES = {
+    'Continue watching': [('The Last Harbour', 't1', 62), ('Night Shift S2', 't2', 35), ('Wild Coast', 't3', 80), ('Paper Kings', 't4', 15)],
+    'Live sport': [('Football', 't5', None), ('Fight night', 't6', None), ('Racing', 't7', None), ('Basketball', 't8', None)],
+}
 
 
-def guide_html():
+def app_html():
     rows = ''
-    for ch, sub, slots in GUIDE_ROWS:
-        s = ''.join(f'<div class="slot {cls}" style="grid-column:span {span}">{name}</div>' for name, span, cls in slots)
-        rows += f'<div class="guide-row"><div class="ch"><b>{ch}</b><small>{sub}</small></div><div class="slots">{s}</div></div>'
-    return f'''<div class="guide" aria-hidden="true">
-  <div class="guide-bar"><strong><span class="live-dot"></span>TV guide</strong><span>Mitsflix Player</span></div>
-  <div class="guide-times"><div></div><div><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span><span>&nbsp;</span></div></div>
-  {rows}
-  <div class="playhead"></div>
-</div>'''
+    for title, tiles in TILES.items():
+        cards = ''
+        for name, art, prog in tiles:
+            extra = f'<i class="prog" style="--p:{prog}%"></i>' if prog is not None else '<b class="live">LIVE</b>'
+            cards += f'<div class="tile {art}">{extra}<span>{name}</span></div>'
+        rows += f'<div class="app-row"><p>{title}</p><div class="tiles">{cards}</div></div>'
+    rail = ''.join(f'<span class="{"on" if i == 0 else ""}">{n}</span>' for i, n in enumerate(['Home', 'Live TV', 'Movies', 'Series', 'Search']))
+    return f'''<figure class="tv" aria-label="Mitsflix Player home screen">
+  <div class="screen">
+    <nav class="app-rail"><img src="/assets/mark.png" alt="" width="34" height="34">{rail}</nav>
+    <div class="app-main">
+      <div class="app-hero"><div><small>Tonight’s movie</small><strong>The Last Harbour</strong><em>Thriller · 2h 4m · 4K</em>
+        <span class="app-btns"><b>Play</b><b class="ghost">My list</b></span></div></div>
+      {rows}
+    </div>
+  </div>
+  <div class="stand"></div>
+  <figcaption>Mitsflix Player, our free app</figcaption>
+</figure>'''
 
 
 HOME = f'''
@@ -80,16 +87,16 @@ HOME = f'''
     <p class="price-line">$100 AUD for a whole year</p>
     <div class="btns"><a class="btn solid" href="/pricing#sign-up">Sign up</a><a class="btn" href="/download">Get the app</a></div>
   </div>
-  {guide_html()}
+  {app_html()}
 </div></section>
 
 <section><div class="wrap split">
   <div><h2>What you get</h2><p class="muted">Everything is included in the one price. No add-on packs, no lock-in contract.</p></div>
   <ul class="ticks">
-    <li><b>Live channels with a full TV guide</b><span>News, entertainment, kids and local channels from many countries, with a guide that fills in by itself.</span></li>
+    <li><b>Live channels from around the world</b><span>News, entertainment, kids and local channels from many countries.</span></li>
     <li><b>Sport and PPV events</b><span>Football, fights, racing and more. Our sports guide on Discord shows what’s on in your time zone.</span></li>
     <li><b>Movies and series on demand</b><span>New titles added every day, with posters, plots and trailers.</span></li>
-    <li><b>Our own free app</b><span>Mitsflix Player for Fire TV, Google TV and Android, with downloads for offline viewing and subtitles built in.</span></li>
+    <li><b>Our own free app</b><span>Mitsflix Player for Fire TV, Google TV and Android, with Continue Watching, downloads for offline viewing and subtitles built in.</span></li>
     <li><b>Real people helping you</b><span>Private support tickets on Discord, or email us any time.</span></li>
   </ul>
 </div></section>
@@ -131,7 +138,7 @@ DOWNLOAD = '''
 STEP4 = '''<ol class="do">
   <li>Open the app and choose <b>Add playlist</b>, then <b>Xtream Codes</b>.</li>
   <li><b>Server</b>, <b>Username</b> and <b>Password:</b> copy them exactly from the welcome email we sent you.</li>
-  <li>Save. Live TV, movies, series and the TV guide load by themselves.</li>
+  <li>Save. Live TV, movies and series load by themselves.</li>
 </ol>'''
 
 GUIDES = f'''
@@ -182,7 +189,7 @@ PRICING = '''
       <h2 style="margin-bottom:.2em">12 months of Mitsflix</h2>
       <p class="muted">Admit one screen at a time.</p>
       <ul class="ticks" style="margin-top:20px">
-        <li><b>Live channels with TV guide</b></li>
+        <li><b>Live channels from around the world</b></li>
         <li><b>Sport and PPV events</b></li>
         <li><b>Movies and series on demand</b></li>
         <li><b>Free Mitsflix Player app</b></li>
