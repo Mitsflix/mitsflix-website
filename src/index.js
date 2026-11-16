@@ -6,10 +6,31 @@ const FILES = {
 FILES['/apk'] = FILES['/app'] = FILES['/android'];
 const LINKS = { '/discord': 'https://discord.gg/zFqtpf4XXn' };
 
+// Subtitle search for the Mitsflix Player apps: passes a handful of OpenSubtitles calls through,
+// adding the app's key (the OPENSUB_API_KEY secret) so it never ships inside an app.
+const SUBS = /^\/subs\/(subtitles|login|logout|download|infos\/user)$/;
+async function subtitles(req, env, url) {
+  const json = (o, status = 200) => new Response(JSON.stringify(o), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
+  if (url.pathname === '/subs/ready') return json({ ready: !!env.OPENSUB_API_KEY });
+  const m = SUBS.exec(url.pathname);
+  if (!m || !['GET', 'POST', 'DELETE'].includes(req.method) || !/^MitsflixPlayer\//.test(req.headers.get('user-agent') || '')) return json({ message: 'Not found' }, 404);
+  if (!env.OPENSUB_API_KEY) return json({ message: 'Subtitle search isn\'t switched on yet.' }, 503);
+  const host = req.headers.get('x-os-host') === 'vip-api.opensubtitles.com' ? 'vip-api.opensubtitles.com' : 'api.opensubtitles.com';
+  const headers = new Headers({ 'Api-Key': env.OPENSUB_API_KEY, 'User-Agent': 'MitsflixPlayer v1.2', Accept: 'application/json' });
+  for (const k of ['authorization', 'content-type']) { const v = req.headers.get(k); if (v) headers.set(k, v); }
+  const search = req.method === 'GET' && m[1] === 'subtitles';
+  const r = await fetch('https://' + host + '/api/v1/' + m[1] + url.search, {
+    method: req.method, headers, body: req.method === 'POST' ? await req.text() : undefined,
+    cf: search ? { cacheTtl: 6 * 3600, cacheEverything: true } : undefined,
+  });
+  return new Response(r.body, { status: r.status, headers: { 'content-type': r.headers.get('content-type') || 'application/json', 'cache-control': 'no-store' } });
+}
+
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
     if (url.hostname === 'www.mitsflix.com') { url.hostname = 'mitsflix.com'; return Response.redirect(url.toString(), 301); }
+    if (url.pathname.startsWith('/subs/')) return subtitles(req, env, url);
     const path = url.pathname.replace(/\/+$/, '').toLowerCase();
     if (LINKS[path]) return Response.redirect(LINKS[path], 302);
     const file = FILES[path];

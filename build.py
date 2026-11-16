@@ -76,8 +76,8 @@ HOME = f'''
     <li><b>Sport and PPV events</b><span>Football, fights, racing and more. Our sports guide on Discord shows what’s on in your time zone.</span></li>
     <li><b>Movies and series on demand</b><span>New titles added every day, with posters, plots and trailers.</span></li>
     <li><b>Download movies and shows</b><span>Save them to your device and watch offline, on a plane, at work camp or anywhere without internet.</span></li>
-    <li><b>Record live TV</b><span>Record a match or show while you watch something else, or schedule a time and it records by itself.</span></li>
-    <li><b>Our own free app</b><span>Mitsflix Player for Fire TV, Google TV and Android, with Continue Watching and subtitles built in.</span></li>
+    <li><b>Record live TV</b><span>Record a match or show to watch later, or set a time and it records by itself.</span></li>
+    <li><b>Our own free app</b><span>Mitsflix Player for Fire TV, Google TV, Android and Windows, with Continue Watching and subtitles for movies and shows.</span></li>
     <li><b>Real people helping you</b><span>Private support tickets on Discord, or email us any time.</span></li>
   </ul>
 </div></section>
@@ -104,12 +104,12 @@ HOME = f'''
 '''
 
 DOWNLOAD = '''
-<div class="wrap page-head"><h1>Download</h1><p>Mitsflix Player is free, has no ads and updates itself. Download movies and shows to watch offline, and record live TV.</p></div>
+<div class="wrap page-head"><h1>Download</h1><p>Mitsflix Player is free, has no ads and updates itself. On Fire TV, Google TV, Android and Windows you can download movies and shows to watch offline, record live TV and add subtitles.</p></div>
 <section style="padding-top:0"><div class="wrap">
   <div class="rows">
     <div class="row"><h3>Fire TV &amp; Google TV</h3><p>Install the <b>Downloader</b> app, open it and enter this code. It always installs the latest version. <a href="/guides#fire-tv">Step-by-step guide</a></p><div class="code">6284643</div></div>
     <div class="row"><h3>Android phone or tablet</h3><p>Download the APK file and open it to install. <a href="/guides#android">Step-by-step guide</a></p><a class="btn solid" href="/android">Download APK</a></div>
-    <div class="row"><h3>Windows <span class="tag">Beta</span></h3><p>Mitsflix Player for Windows 10 and 11. If Windows shows a blue warning, choose <b>More info</b>, then <b>Run anyway</b>.</p><a class="btn" href="/windows">Download for Windows</a></div>
+    <div class="row"><h3>Windows <span class="tag">Beta</span></h3><p>Mitsflix Player for Windows 10 and 11, with offline downloads and live TV recording. If Windows shows a blue warning, choose <b>More info</b>, then <b>Run anyway</b>.</p><a class="btn" href="/windows">Download for Windows</a></div>
     <div class="row"><h3>iPhone, iPad &amp; Apple TV</h3><p>Install <b>TiviMax</b> from the App Store and add your Mitsflix login. <a href="/guides#apple">Step-by-step guide</a></p><a class="btn" href="https://apps.apple.com/search?term=tivimax">Open App Store</a></div>
   </div>
   <p class="muted" style="margin-top:28px">Fire TV and Android need Android 8 or newer. Fire TV Sticks with <b>Select</b> or <b>HD</b> in the name aren’t powerful enough.</p>
@@ -267,7 +267,7 @@ RESELLERS = '''
   <details><summary>How do I set my prices?</summary><p>That’s up to you. You buy credits from us and charge your customers whatever you like.</p></details>
   <details><summary>Can I offer free trials?</summary><p>Yes. Your panel can create short trial accounts so customers can test before they buy.</p></details>
   <details><summary>How many screens does each account get?</summary><p>Each account plays on one screen at a time.</p></details>
-  <details><summary>What do my customers use to watch?</summary><p>Mitsflix Player on Fire TV, Google TV and Android, TiviMax on Apple devices, or any app that supports Xtream Codes. Point them to our <a href="/guides">setup guides</a>.</p></details>
+  <details><summary>What do my customers use to watch?</summary><p>Mitsflix Player on Fire TV, Google TV, Android and Windows, TiviMax on Apple devices, or any app that supports Xtream Codes. Point them to our <a href="/guides">setup guides</a>.</p></details>
 </div></section>
 '''
 

@@ -16,13 +16,17 @@ jobs:
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          OPENSUB_API_KEY: ${{ secrets.OPENSUB_API_KEY }}
         run: |
           if [ -z "$CLOUDFLARE_API_TOKEN" ]; then echo "::error::Add CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID secrets to this repo."; exit 1; fi
           npx --yes wrangler@3 deploy
+          # Online subtitle search in the apps switches on once this secret exists.
+          if [ -n "$OPENSUB_API_KEY" ]; then printf '%s' "$OPENSUB_API_KEY" | npx --yes wrangler@3 secret put OPENSUB_API_KEY; else echo "No OPENSUB_API_KEY secret yet: subtitle search stays off."; fi
       - name: Check the site and downloads
         run: |
           sleep 5
           for p in / /download /resellers /android /windows /discord; do
             printf '%-11s ' "$p"; curl -s -o /dev/null -r 0-99 -w '%{http_code} %{content_type} %{redirect_url}\n' "https://mitsflix-site.sales-eea.workers.dev$p"
           done
+          printf 'subtitles   '; curl -s https://mitsflix-site.sales-eea.workers.dev/subs/ready; echo
           printf 'mitsflix.com '; curl -s -o /dev/null -w '%{http_code} %{redirect_url}\n' https://mitsflix.com/ || echo 'not reachable yet'
