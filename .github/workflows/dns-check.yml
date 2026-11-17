@@ -1,15 +1,12 @@
 name: DNS check
-on: workflow_dispatch
+on: { workflow_dispatch: {} }
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "registry NS:"; dig +short NS mitsflix.com @a.gtld-servers.net || true
-          dig NS mitsflix.com @a.gtld-servers.net +noall +authority | head -5
-          echo "public NS (1.1.1.1):"; dig +short NS mitsflix.com @1.1.1.1
-          echo "public NS (8.8.8.8):"; dig +short NS mitsflix.com @8.8.8.8
-          echo "DS (DNSSEC):"; dig +short DS mitsflix.com @a.gtld-servers.net; dig DS mitsflix.com @1.1.1.1 +short
-          echo "A via cloudflare NS:"; dig +short A mitsflix.com @lochlan.ns.cloudflare.com
-          echo "MX:"; dig +short MX mitsflix.com @lochlan.ns.cloudflare.com
-          echo "site:"; curl -s -o /dev/null -m 15 -w '%{http_code}\n' https://mitsflix.com/ || true
+          for t in NS A AAAA; do echo "== $t"; dig +short $t mitsflix.com @1.1.1.1; dig +short $t mitsflix.com @8.8.8.8; done
+          echo "== www"; dig +short www.mitsflix.com @1.1.1.1
+          echo "== at Cloudflare's own nameserver"; dig +short A mitsflix.com @lochlan.ns.cloudflare.com
+          echo "== registry"; dig +short NS mitsflix.com @a.gtld-servers.net; dig NS mitsflix.com @a.gtld-servers.net | grep -A4 "AUTHORITY SECTION"
+          for u in https://mitsflix.com/ https://www.mitsflix.com/ https://mitsflix.com/linux; do printf '%s ' $u; curl -s -o /dev/null -r 0-99 -m 20 -w '%{http_code} %{remote_ip} %{ssl_verify_result} %{errormsg}\n' $u; done
