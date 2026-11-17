@@ -17,3 +17,5 @@ jobs:
           for r in 1.1.1.1 8.8.8.8 9.9.9.9; do printf 'RESOLVER %s ' $r; dig +dnssec +noall +comments A mitsflix.com @$r | grep -o -E "status: [A-Z]+|flags: [a-z ]+" | tr '\n' ' '; echo; done  # validating resolvers
           printf 'DNSKEY at Cloudflare: '; dig +short DNSKEY mitsflix.com @lochlan.ns.cloudflare.com | wc -l
           printf 'DS at registry: '; dig +short DS mitsflix.com @a.gtld-servers.net | wc -l
+          for i in 1 2 3 4 5 6 7 8; do printf 'GOOGLE %s ' $i; dig +noall +comments A mitsflix.com @8.8.8.8 | grep -o -E "status: [A-Z]+|EDE: [^)]*\)" | tr '\n' ' '; printf '| DS seen: '; dig +short DS mitsflix.com @8.8.8.8 | awk '{print $1}' | tr '\n' ' '; echo; sleep 1; done
+          printf 'GOOGLE8844 '; dig +noall +comments A mitsflix.com @8.8.4.4 | grep -o -E "status: [A-Z]+"
