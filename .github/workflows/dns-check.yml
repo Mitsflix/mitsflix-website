@@ -5,8 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          for t in NS A AAAA; do echo "== $t"; dig +short $t mitsflix.com @1.1.1.1; dig +short $t mitsflix.com @8.8.8.8; done
-          echo "== www"; dig +short www.mitsflix.com @1.1.1.1
-          echo "== at Cloudflare's own nameserver"; dig +short A mitsflix.com @lochlan.ns.cloudflare.com
-          echo "== registry"; dig +short NS mitsflix.com @a.gtld-servers.net; dig NS mitsflix.com @a.gtld-servers.net | grep -A4 "AUTHORITY SECTION"
-          for u in https://mitsflix.com/ https://www.mitsflix.com/ https://mitsflix.com/linux; do printf '%s ' $u; curl -s -o /dev/null -r 0-99 -m 20 -w '%{http_code} %{remote_ip} %{ssl_verify_result} %{errormsg}\n' $u; done
+          q() { echo "--- $*"; dig +noall +comments +answer +authority "$@" | grep -E "status:|IN" ; }
+          q NS mitsflix.com @1.1.1.1
+          q A mitsflix.com @1.1.1.1
+          q A mitsflix.com @8.8.8.8
+          q SOA mitsflix.com @lochlan.ns.cloudflare.com
+          q A mitsflix.com @lochlan.ns.cloudflare.com
+          q A www.mitsflix.com @lochlan.ns.cloudflare.com
+          q A mitsflix.com @sloan.ns.cloudflare.com
+          echo "--- system"; getent ahosts mitsflix.com | head -3
+          curl -sv -o /dev/null -m 20 https://mitsflix.com/ 2>&1 | grep -E "Trying|Connected|HTTP/|SSL|error|refused" | head -8
