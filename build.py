@@ -77,7 +77,7 @@ HOME = f'''
     <li><b>Movies and series on demand</b><span>New titles added every day, with posters, plots and trailers.</span></li>
     <li><b>Download movies and shows</b><span>Save them to your device and watch offline, on a plane, at work camp or anywhere without internet.</span></li>
     <li><b>Record live TV</b><span>Record a match or show to watch later, or set a time and it records by itself.</span></li>
-    <li><b>Our own free app</b><span>Mitsflix Player for Fire TV, Google TV, Android and Windows, with Continue Watching and subtitles for movies and shows.</span></li>
+    <li><b>Our own free app</b><span>Mitsflix Player for Fire TV, Google TV, Android, Windows and Linux, with Continue Watching and subtitles for movies and shows.</span></li>
     <li><b>Real people helping you</b><span>Private support tickets on Discord, or email us any time.</span></li>
   </ul>
 </div></section>
@@ -104,12 +104,13 @@ HOME = f'''
 '''
 
 DOWNLOAD = '''
-<div class="wrap page-head"><h1>Download</h1><p>Mitsflix Player is free, has no ads and updates itself. On Fire TV, Google TV, Android and Windows you can download movies and shows to watch offline, record live TV and add subtitles.</p></div>
+<div class="wrap page-head"><h1>Download</h1><p>Mitsflix Player is free, has no ads and updates itself. On Fire TV, Google TV, Android, Windows and Linux you can download movies and shows to watch offline, record live TV and add subtitles.</p></div>
 <section style="padding-top:0"><div class="wrap">
   <div class="rows">
     <div class="row"><h3>Fire TV &amp; Google TV</h3><p>Install the <b>Downloader</b> app, open it and enter this code. It always installs the latest version. <a href="/guides#fire-tv">Step-by-step guide</a></p><div class="code">6284643</div></div>
     <div class="row"><h3>Android phone or tablet</h3><p>Download the APK file and open it to install. <a href="/guides#android">Step-by-step guide</a></p><a class="btn solid" href="/android">Download APK</a></div>
     <div class="row"><h3>Windows <span class="tag">Beta</span></h3><p>Mitsflix Player for Windows 10 and 11, with offline downloads and live TV recording. If Windows shows a blue warning, choose <b>More info</b>, then <b>Run anyway</b>.</p><a class="btn" href="/windows">Download for Windows</a></div>
+    <div class="row"><h3>Linux <span class="tag">Beta</span></h3><p>The same player for Linux. On Ubuntu, Debian or Mint, download the .deb and open it. On other systems use the <a href="/linux-appimage">AppImage</a>: make it executable, then open it.</p><a class="btn" href="/linux">Download for Linux</a></div>
     <div class="row"><h3>iPhone, iPad &amp; Apple TV</h3><p>Install <b>TiviMax</b> from the App Store and add your Mitsflix login. <a href="/guides#apple">Step-by-step guide</a></p><a class="btn" href="https://apps.apple.com/search?term=tivimax">Open App Store</a></div>
   </div>
   <p class="muted" style="margin-top:28px">Fire TV and Android need Android 8 or newer. Fire TV Sticks with <b>Select</b> or <b>HD</b> in the name aren’t powerful enough.</p>
@@ -293,7 +294,7 @@ SUPPORT = '''
 
 CONTENT = {
     'index': ('Home', 'Live TV, sport, movies and series in one service. $100 AUD a year, with our free Mitsflix Player app.', HOME),
-    'download': ('Download', 'Download Mitsflix Player for Fire TV, Google TV, Android and Windows. Downloader code 6284643.', DOWNLOAD),
+    'download': ('Download', 'Download Mitsflix Player for Fire TV, Google TV, Android, Windows and Linux. Downloader code 6284643.', DOWNLOAD),
     'guides': ('Setup guides', 'Step-by-step setup for Fire TV, Google TV, Android and Apple, plus buffering fixes.', GUIDES),
     'pricing': ('Pricing', 'Mitsflix is $100 AUD for 12 months. Sign up in a minute.', PRICING),
     'resellers': ('Resellers', 'Sell Mitsflix with your own reseller panel. Create and renew accounts yourself and set your own prices.', RESELLERS),
