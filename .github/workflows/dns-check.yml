@@ -5,10 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          q() { echo "--- $*"; dig +noall +comments +answer +authority "$@" | grep -E "status:|IN|EDE" ; }
-          q DS mitsflix.com @a.gtld-servers.net
-          q DNSKEY mitsflix.com @lochlan.ns.cloudflare.com
-          q AAAA mitsflix.com @lochlan.ns.cloudflare.com
-          q A mitsflix.com @1.1.1.1
-          echo "--- with checking disabled"; dig +cd +short AAAA mitsflix.com @1.1.1.1
-          echo "--- whois"; (whois mitsflix.com 2>/dev/null || curl -s https://rdap.verisign.com/com/v1/domain/mitsflix.com) | grep -i -E "dnssec|secureDNS|delegationSigned|Name Server|status" | head -12
+          echo "--- DS at registry"; dig +short DS mitsflix.com @a.gtld-servers.net; dig +noall +authority DS mitsflix.com @a.gtld-servers.net | grep -c "IN.DS" || true
+          for r in 1.1.1.1 8.8.8.8 9.9.9.9; do echo "--- $r"; dig +noall +comments +answer A mitsflix.com @$r | grep -E "status:|EDE|IN"; done
+          for p in / /android /windows /linux /linux-appimage; do printf '%-16s ' "$p"; curl -s -o /dev/null -r 0-99 -m 25 -w '%{http_code} %{content_type}\n' "https://mitsflix.com$p" || echo unreachable; done
+          for p in /linux /linux-appimage; do printf 'preview %-16s ' "$p"; curl -s -o /dev/null -r 0-99 -m 25 -w '%{http_code} %{content_type}\n' "https://mitsflix-site.sales-eea.workers.dev$p"; done
