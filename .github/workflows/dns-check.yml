@@ -14,3 +14,6 @@ jobs:
           print('DNSSEC', d.get('secureDNS',{}).get('delegationSigned'))
           print('NS', [n['ldhName'] for n in d['nameservers']])"
           for p in / /android /linux; do printf 'SITE %-10s ' "$p"; curl -s -o /dev/null -r 0-99 -m 25 -w '%{http_code}\n' "https://mitsflix.com$p" || echo unreachable; done
+          for r in 1.1.1.1 8.8.8.8 9.9.9.9; do printf 'RESOLVER %s ' $r; dig +dnssec +noall +comments A mitsflix.com @$r | grep -o -E "status: [A-Z]+|flags: [a-z ]+" | tr '\n' ' '; echo; done  # validating resolvers
+          printf 'DNSKEY at Cloudflare: '; dig +short DNSKEY mitsflix.com @lochlan.ns.cloudflare.com | wc -l
+          printf 'DS at registry: '; dig +short DS mitsflix.com @a.gtld-servers.net | wc -l
