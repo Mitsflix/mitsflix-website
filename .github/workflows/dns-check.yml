@@ -5,13 +5,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          q() { echo "--- $*"; dig +noall +comments +answer +authority "$@" | grep -E "status:|IN" ; }
-          q NS mitsflix.com @1.1.1.1
+          q() { echo "--- $*"; dig +noall +comments +answer +authority "$@" | grep -E "status:|IN|EDE" ; }
+          q DS mitsflix.com @a.gtld-servers.net
+          q DNSKEY mitsflix.com @lochlan.ns.cloudflare.com
+          q AAAA mitsflix.com @lochlan.ns.cloudflare.com
           q A mitsflix.com @1.1.1.1
-          q A mitsflix.com @8.8.8.8
-          q SOA mitsflix.com @lochlan.ns.cloudflare.com
-          q A mitsflix.com @lochlan.ns.cloudflare.com
-          q A www.mitsflix.com @lochlan.ns.cloudflare.com
-          q A mitsflix.com @sloan.ns.cloudflare.com
-          echo "--- system"; getent ahosts mitsflix.com | head -3
-          curl -sv -o /dev/null -m 20 https://mitsflix.com/ 2>&1 | grep -E "Trying|Connected|HTTP/|SSL|error|refused" | head -8
+          echo "--- with checking disabled"; dig +cd +short AAAA mitsflix.com @1.1.1.1
+          echo "--- whois"; (whois mitsflix.com 2>/dev/null || curl -s https://rdap.verisign.com/com/v1/domain/mitsflix.com) | grep -i -E "dnssec|secureDNS|delegationSigned|Name Server|status" | head -12
