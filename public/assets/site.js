@@ -32,6 +32,11 @@
         form.reset();
         msg.className = 'form-msg ok';
         msg.textContent = form.dataset.done || 'Sent. We’ll email you soon.';
+        // Sign-ups with a Discord username get a private chat with us there.
+        const join = document.createElement('a');
+        join.href = '/discord'; join.textContent = 'Join our Discord';
+        if (j.chat === 'opened') msg.textContent = 'Thanks! Your private chat with us is open in our Discord now. We’ll email your payment options too.';
+        if (j.chat === 'pending') { msg.textContent = 'Thanks! We’ll email your payment options. '; msg.append(join, ' and your private chat with us opens automatically.'); }
       } catch (err) {
         msg.className = 'form-msg err';
         msg.textContent = err.message + ' You can also email sales@mitsflix.com.';
