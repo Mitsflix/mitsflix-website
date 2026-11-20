@@ -166,3 +166,20 @@ footer nav a { color: var(--muted); text-decoration: none; } footer nav a:hover 
   form.order { grid-template-columns: 1fr; }
   .ticket .main, .ticket .stub { padding: 28px 24px; }
 }
+
+/* Reseller credit packages */
+.table-wrap { overflow-x: auto; margin: 24px 0 16px; border: 1px solid rgba(242,181,62,.35); border-radius: 14px; }
+.packages { width: 100%; border-collapse: collapse; min-width: 520px; font-variant-numeric: tabular-nums; }
+.packages th, .packages td { padding: 14px 16px; text-align: right; border-bottom: 1px solid rgba(255,255,255,.08); }
+.packages th:first-child { text-align: left; }
+.packages thead th { font-size: .85rem; color: var(--muted); font-weight: 600; }
+.packages tbody tr:last-child > * { border-bottom: 0; }
+.packages tbody th { font-weight: 700; }
+.packages small { display: block; font-weight: 400; color: var(--muted); font-size: .8rem; }
+.packages td:last-child { color: var(--gold); font-weight: 700; }
+.packages tr.start { background: rgba(242,181,62,.08); }
+@media (max-width: 600px) {
+  .packages { min-width: 0; font-size: .92rem; }
+  .packages th, .packages td { padding: 12px 10px; }
+  .packages th:nth-child(4), .packages td:nth-child(4) { display: none; }  /* per-line price: the total matters more on a phone */
+}
