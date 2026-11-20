@@ -222,8 +222,8 @@ PRICING = '''
   <p class="muted">Pick whichever suits you when you sign up. There’s no subscription or automatic charge: we remind you before your 12 months end, and renewing keeps the same login.</p>
   <dl class="pay">
     <div><dt>Crypto</dt><dd>USDT (on TRON or Solana), USDC (on Solana), Bitcoin, Litecoin, Dogecoin, XRP, Stellar or Solana. We give you the exact amount to send, and your login is sent automatically once it arrives.</dd></div>
-    <div><dt>Wise</dt><dd>Pay from your Wise account or with a Wise payment link, with your Discord username or email as the reference. Your login follows once it arrives.</dd></div>
-    <div><dt>PayID</dt><dd>For Australian bank accounts. Use your Discord username or email as the reference, and your login follows once it arrives.</dd></div>
+    <div><dt>Wise</dt><dd>Pay from your Wise account or with a Wise payment link, with your Discord username or email as the reference. Your login is sent automatically once it arrives.</dd></div>
+    <div><dt>PayID</dt><dd>For Australian bank accounts. Use your Discord username or email as the reference, and your login is sent automatically once it arrives.</dd></div>
   </dl>
 </div></section>
 
@@ -341,7 +341,7 @@ RENEW = '''
   <div>
     <h2>Keep watching</h2>
     <p>Add your email, and your Discord username if you use Discord, then choose how to pay. Your login and app set-up stay exactly the same.</p>
-    <p class="muted">Once your details are added, we’ll send your renewal reminders automatically. Crypto payments renew your line straight away.</p>
+    <p class="muted">Once your details are added, we’ll send your renewal reminders automatically. Crypto, Wise and PayID payments renew your line straight away.</p>
   </div>
   <form class="order renew" data-done="Done! Check your email for your payment details.">
     <input type="hidden" name="c" value="">
