@@ -246,7 +246,7 @@ RESELLERS = '''
       <tr><th scope="row">Elite</th><td>960</td><td>80</td><td>$40</td><td>$3,200</td></tr>
     </tbody>
   </table></div>
-  <p class="muted">1-year lines typically retail for around $120 AUD, so you roughly double your money on each sale. Pay by card, Apple Pay, Google Pay, crypto, Wise or PayID.</p>
+  <p class="muted">Pay by card, Apple Pay, Google Pay, crypto, Wise or PayID.</p>
 </div></section>
 
 <section><div class="wrap">
