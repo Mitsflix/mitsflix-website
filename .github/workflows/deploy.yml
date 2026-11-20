@@ -34,7 +34,7 @@ jobs:
       - name: Check the site and downloads
         run: |
           sleep 5
-          for p in / /download /resellers /watch/ /android /windows /mac /discord; do
+          for p in / /download /resellers /android /windows /mac /discord; do
             printf '%-11s ' "$p"; curl -s -o /dev/null -r 0-99 -w '%{http_code} %{content_type} %{redirect_url}\n' "https://mitsflix-site.sales-eea.workers.dev$p"
           done
           printf 'subtitles   '; curl -s https://mitsflix-site.sales-eea.workers.dev/subs/ready; echo

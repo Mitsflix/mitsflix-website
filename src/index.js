@@ -14,8 +14,10 @@ const LINKS = { '/discord': 'https://discord.gg/zFqtpf4XXn' };
 // adding the app's key (the OPENSUB_API_KEY secret) so it never ships inside an app.
 // Windows/Linux call /subs/<endpoint>; the Android app (OwnTV core, custom server) calls /subs/api/v1/<endpoint>.
 const SUBS = /^\/subs\/(?:api\/v1\/)?(subtitles|login|logout|download|infos\/user)$/;
+const WATCH = 'http://watch.mitsflix.com:8080/';
+
 // The web player at mitsflix.com/watch: same site, so the browser says so (and can't fake it for others).
-const webPlayer = (req) => req.headers.get('x-mitsflix-web') === '1' && (req.headers.get('sec-fetch-site') === 'same-origin' || /^https?:\/\/(watch\.)?mitsflix\.com$/.test(req.headers.get('origin') || ''));
+const webPlayer = (req) => req.headers.get('x-mitsflix-web') === '1' && (req.headers.get('sec-fetch-site') === 'same-origin' || /^https?:\/\/(watch\.)?mitsflix\.com(:8080)?$/.test(req.headers.get('origin') || ''));
 
 async function subtitles(req, env, url) {
   const json = (o, status = 200) => new Response(JSON.stringify(o), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
@@ -38,16 +40,17 @@ export default {
   async fetch(req, env) {
     const url = new URL(req.url);
     if (url.hostname === 'www.mitsflix.com') { url.hostname = 'mitsflix.com'; return Response.redirect(url.toString(), 301); }
-    // The web player lives at http://watch.mitsflix.com. It's deliberately NOT https: browsers won't play
-    // the http video streams IPTV servers send from a secure page. (Nothing is entered there but the
-    // viewer's own playlist login, which those apps send over plain http anyway.)
+    // The web player lives at http://watch.mitsflix.com:8080. It's deliberately NOT https: browsers won't
+    // play the http video streams IPTV servers send from a secure page. Port 8080 because Chrome quietly
+    // swaps plain addresses on the normal port for https ones; it leaves other ports alone.
+    // (Nothing is typed there but the viewer's own playlist login, which IPTV apps send over http anyway.)
     if (url.hostname === 'watch.mitsflix.com') {
-      if (url.protocol === 'https:') { url.protocol = 'http:'; return Response.redirect(url.toString(), 302); }
+      if (url.protocol === 'https:' || url.port !== '8080') return Response.redirect(WATCH + url.pathname.slice(1) + url.search, 302);
       if (url.pathname.startsWith('/subs/')) return subtitles(req, env, url);
-      const inner = new URL(req.url); inner.protocol = 'https:'; inner.hostname = 'mitsflix.com'; inner.pathname = '/watch' + (url.pathname === '/' ? '/' : url.pathname);
+      const inner = new URL(req.url); inner.protocol = 'https:'; inner.hostname = 'mitsflix.com'; inner.port = ''; inner.pathname = '/watch' + (url.pathname === '/' ? '/' : url.pathname);
       return env.ASSETS.fetch(new Request(inner.toString(), req));
     }
-    if (/^\/watch(\/|$)/.test(url.pathname)) return Response.redirect('http://watch.mitsflix.com/', 302);
+    if (/^\/watch(\/|$)/.test(url.pathname)) return Response.redirect(WATCH, 302);
     if (url.pathname.startsWith('/subs/')) return subtitles(req, env, url);
     const path = url.pathname.replace(/\/+$/, '').toLowerCase();
     if (LINKS[path]) return Response.redirect(LINKS[path], 302);
