@@ -1,0 +1,15 @@
+name: Safari test of the web player
+on: workflow_dispatch
+jobs:
+  safari:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: sudo safaridriver --enable && pip3 install --break-system-packages selenium >/dev/null
+      - env:
+          TEST_LINE_USERNAME: ${{ secrets.TEST_LINE_USERNAME }}
+          TEST_LINE_PASSWORD: ${{ secrets.TEST_LINE_PASSWORD }}
+        run: python3 -u tools/safari_test.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: screenshots, path: '*.png', retention-days: 1 }
