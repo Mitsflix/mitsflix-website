@@ -111,7 +111,7 @@ DOWNLOAD = '''
     <div class="row"><h3>Android phone or tablet</h3><p>Download the APK file and open it to install. <a href="/guides#android">Step-by-step guide</a></p><a class="btn solid" href="/android">Download APK</a></div>
     <div class="row"><h3>Windows <span class="tag">Beta</span></h3><p>Mitsflix Player for Windows 10 and 11, with offline downloads and live TV recording. If Windows shows a blue warning, choose <b>More info</b>, then <b>Run anyway</b>.</p><a class="btn" href="/windows">Download for Windows</a></div>
     <div class="row"><h3>Linux <span class="tag">Beta</span></h3><p>The same player for Linux. On Ubuntu, Debian or Mint, download the .deb and open it. On other systems use the <a href="/linux-appimage">AppImage</a>: make it executable, then open it.</p><a class="btn" href="/linux">Download for Linux</a></div>
-    <div class="row"><h3>iPhone, iPad &amp; Apple TV</h3><p>Install <b>TiviMax</b> from the App Store and add your Mitsflix login. <a href="/guides#apple">Step-by-step guide</a></p><a class="btn" href="https://apps.apple.com/search?term=tivimax">Open App Store</a></div>
+    <div class="row"><h3>iPhone, iPad &amp; Apple TV</h3><p>Install <b>TiviMax Premium</b> from the App Store and add your Mitsflix login. <a href="/guides#apple">Step-by-step guide</a></p><a class="btn" href="https://apps.apple.com/au/app/id1632953327">Open App Store</a></div>
   </div>
   <p class="muted" style="margin-top:28px">Fire TV and Android need Android 8 or newer. Fire TV Sticks with <b>Select</b> or <b>HD</b> in the name aren’t powerful enough.</p>
 </div></section>
@@ -146,7 +146,7 @@ GUIDES = f'''
 </article>
 
 <article class="howto" id="apple"><h2>iPhone, iPad &amp; Apple TV</h2>
-  <ol class="do"><li>Install <b>TiviMax</b> from the App Store. The Premium lifetime unlock is worth it.</li>
+  <ol class="do"><li>Install <b><a href="https://apps.apple.com/au/app/id1632953327">TiviMax Premium</a></b> from the App Store.</li>
   <li>Add a playlist using <b>Xtream Codes</b>.</li><li><b>Server</b>, <b>Username</b> and <b>Password:</b> copy them exactly from the welcome email we sent you.</li></ol>
 </article>
 
