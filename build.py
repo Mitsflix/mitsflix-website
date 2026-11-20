@@ -188,6 +188,17 @@ PRICING = '''
   </div>
 </div></section>
 
+<section id="ways-to-pay" style="padding-top:8px"><div class="wrap">
+  <h2>Ways to pay</h2>
+  <p class="muted">Pick whichever suits you when you sign up. There’s no subscription or automatic charge: we remind you before your 12 months end, and renewing keeps the same login.</p>
+  <dl class="pay">
+    <div><dt>Card, Apple Pay or Google Pay</dt><dd>Pay through a secure checkout page. Your login is sent automatically as soon as payment goes through.</dd></div>
+    <div><dt>Crypto (USDT)</dt><dd>USDT on the TRON network. We give you the exact amount to send, and your login is sent automatically once it arrives.</dd></div>
+    <div><dt>Wise</dt><dd>Pay from your Wise account or with a Wise payment link. Your login follows once we see the payment.</dd></div>
+    <div><dt>PayID</dt><dd>For Australian bank accounts. Use your Discord username or email as the reference, and your login follows once it arrives.</dd></div>
+  </dl>
+</div></section>
+
 <section id="sign-up"><div class="wrap split">
   <div>
     <h2>Sign up</h2>

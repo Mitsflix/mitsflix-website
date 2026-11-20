@@ -183,3 +183,10 @@ footer nav a { color: var(--muted); text-decoration: none; } footer nav a:hover 
   .packages th, .packages td { padding: 12px 10px; }
   .packages th:nth-child(4), .packages td:nth-child(4) { display: none; }  /* per-line price: the total matters more on a phone */
 }
+
+/* Ways to pay */
+.pay { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 14px; margin: 22px 0 0; }
+.pay > div { border: 1px solid var(--line); background: var(--panel); border-radius: 12px; padding: 16px 18px; }
+.pay dt { color: var(--gold); }
+.pay dt { font-weight: 700; margin-bottom: 6px; }
+.pay dd { margin: 0; color: var(--muted, inherit); font-size: .95em; line-height: 1.5; }
