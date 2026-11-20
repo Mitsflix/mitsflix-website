@@ -200,7 +200,7 @@ PRICING = '''
     <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
     <label>Phone or WhatsApp <small>Optional</small><input name="phone" autocomplete="tel" maxlength="40"></label>
     <label>Discord username <small>Optional. We’ll open a private chat with you in our Discord and give you your member role</small><input name="discord" maxlength="40" autocapitalize="none" placeholder="e.g. alex_1234"></label>
-    <label>Referral code <small>Optional. You and your friend both get 1 month free</small><input name="ref" maxlength="12" autocapitalize="characters" placeholder="MITS-XXXXXX"></label>
+    <label>Referral code <small>Optional. Your friend’s Discord username. You both get 1 month free</small><input name="ref" maxlength="32" autocapitalize="none" autocomplete="off" spellcheck="false" placeholder="e.g. alex_1234"></label>
     <label class="full">What will you watch on?
       <select name="device" required><option value="">Choose a device</option><option>Fire TV Stick</option><option>Google TV / Android TV</option><option>Android phone or tablet</option><option>iPhone, iPad or Apple TV</option><option>Smart TV</option><option>Computer</option><option>Not sure yet</option></select></label>
     <label class="full">Anything we should set up? <small>Optional, e.g. English channels only, adult channels on or off</small><textarea name="prefs" maxlength="800"></textarea></label>

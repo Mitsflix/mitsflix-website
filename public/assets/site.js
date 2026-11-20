@@ -7,9 +7,10 @@
     btn.textContent = open ? 'Close' : 'Menu';
   });
 
-  // Referral links (mitsflix.com/pricing?ref=MITS-XXXXXX) fill in the code, and it's remembered while they look around.
+  // Referral links (mitsflix.com/pricing?ref=<friend's Discord username>) fill in the code, and it's remembered while they look around.
   try {
-    const fromUrl = (new URLSearchParams(location.search).get('ref') || '').toUpperCase().replace(/[^A-Z0-9-]/g, '').slice(0, 12);
+    const raw = (new URLSearchParams(location.search).get('ref') || '').trim().replace(/^@/, '');
+    const fromUrl = /^mits-?/i.test(raw) ? raw.toUpperCase().replace(/[^A-Z0-9-]/g, '').slice(0, 12) : raw.toLowerCase().replace(/[^a-z0-9_.]/g, '').slice(0, 32);
     if (fromUrl) localStorage.setItem('mitsflix-ref', fromUrl);
     const code = fromUrl || localStorage.getItem('mitsflix-ref') || '';
     document.querySelectorAll('input[name=ref]').forEach((el) => { if (code && !el.value) el.value = code; });
