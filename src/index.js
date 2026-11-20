@@ -14,11 +14,14 @@ const LINKS = { '/discord': 'https://discord.gg/zFqtpf4XXn' };
 // adding the app's key (the OPENSUB_API_KEY secret) so it never ships inside an app.
 // Windows/Linux call /subs/<endpoint>; the Android app (OwnTV core, custom server) calls /subs/api/v1/<endpoint>.
 const SUBS = /^\/subs\/(?:api\/v1\/)?(subtitles|login|logout|download|infos\/user)$/;
+// The web player at mitsflix.com/watch: same site, so the browser says so (and can't fake it for others).
+const webPlayer = (req) => req.headers.get('x-mitsflix-web') === '1' && (req.headers.get('sec-fetch-site') === 'same-origin' || /^https:\/\/mitsflix\.com$/.test(req.headers.get('origin') || ''));
+
 async function subtitles(req, env, url) {
   const json = (o, status = 200) => new Response(JSON.stringify(o), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
   if (url.pathname === '/subs/ready') return json({ ready: !!env.OPENSUB_API_KEY });
   const m = SUBS.exec(url.pathname);
-  if (!m || !['GET', 'POST', 'DELETE'].includes(req.method) || !/^(MitsflixPlayer\/|OwnTV$)/.test(req.headers.get('user-agent') || '')) return json({ message: 'Not found' }, 404);
+  if (!m || !['GET', 'POST', 'DELETE'].includes(req.method) || !(/^(MitsflixPlayer\/|OwnTV$)/.test(req.headers.get('user-agent') || '') || webPlayer(req))) return json({ message: 'Not found' }, 404);
   if (!env.OPENSUB_API_KEY) return json({ message: 'Subtitle search isn\'t switched on yet.' }, 503);
   const host = req.headers.get('x-os-host') === 'vip-api.opensubtitles.com' ? 'vip-api.opensubtitles.com' : 'api.opensubtitles.com';
   const headers = new Headers({ 'Api-Key': env.OPENSUB_API_KEY, 'User-Agent': 'MitsflixPlayer v1.2', Accept: 'application/json' });
