@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Renew | Mitsflix</title>
+<meta name="description" content="Renew your Mitsflix line. Your login and set-up stay the same.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Renew | Mitsflix">
+<meta property="og:description" content="Renew your Mitsflix line. Your login and set-up stay the same.">
+<meta property="og:image" content="https://mitsflix.com/assets/og.jpg">
+<meta property="og:url" content="https://mitsflix.com/renew">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/favicon.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Figtree:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="top"><div class="wrap">
+  <a class="brand" href="/" aria-label="Mitsflix home"><img src="/assets/wordmark-400.png" alt="Mitsflix" width="118" height="53"></a>
+  <button class="menu-btn" aria-expanded="false" aria-controls="nav">Menu</button>
+  <nav class="nav" id="nav"><a href="/download">Download</a>
+<a href="/guides">Setup guides</a>
+<a href="/pricing">Pricing</a>
+<a href="/resellers">Resellers</a>
+<a href="/support">Support</a><a class="btn solid" href="/pricing#sign-up" style="min-height:40px;padding:0 18px">Sign up</a></nav>
+</div></header>
+<main id="main">
+
+<div class="wrap page-head"><h1>Renew your Mitsflix</h1><p class="renew-line">Checking your renewal link…</p></div>
+
+<section style="padding-top:24px"><div class="wrap split">
+  <div>
+    <h2>Keep watching</h2>
+    <p>Add your email, and your Discord username if you use Discord, then choose how to pay. Your login and app set-up stay exactly the same.</p>
+    <p class="muted">Once your details are added, we’ll send your renewal reminders automatically. Card and crypto payments renew your line straight away.</p>
+  </div>
+  <form class="order renew" data-done="Done! Check your email for your payment details.">
+    <input type="hidden" name="c" value="">
+    <label>Name<input name="name" autocomplete="name" required maxlength="80"></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+    <label class="full">Discord username <small>Optional. If you add it, your renewal opens in a private chat in our Discord</small><input name="discord" maxlength="40" autocapitalize="none" placeholder="e.g. alex_1234"></label>
+    <label class="full">How would you like to pay?
+      <select name="method"><option value="kofi">Card, Apple Pay or Google Pay</option><option value="crypto">Crypto (USDT)</option><option value="wise">Wise</option><option value="payid">PayID (Australia only)</option></select></label>
+    <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+    <div class="full"><button class="btn solid" type="submit">Renew my line</button></div>
+    <p class="form-msg" role="status" aria-live="polite"></p>
+  </form>
+</div></section>
+
+</main>
+<footer><div class="wrap">
+  <img src="/assets/wordmark-400.png" alt="Mitsflix" width="140" height="62">
+  <nav><a href="/download">Download</a>
+<a href="/guides">Setup guides</a>
+<a href="/pricing">Pricing</a>
+<a href="/resellers">Resellers</a>
+<a href="/support">Support</a><a href="/discord">Discord</a><a href="mailto:sales@mitsflix.com">sales@mitsflix.com</a></nav>
+  <p style="margin:0">© Mitsflix. One service. Stream all.</p>
+</div></footer>
+<script src="/assets/site.js" defer></script>
+</body>
+</html>

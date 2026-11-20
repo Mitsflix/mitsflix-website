@@ -311,6 +311,29 @@ SUPPORT = '''
 </div></section>
 '''
 
+RENEW = '''
+<div class="wrap page-head"><h1>Renew your Mitsflix</h1><p class="renew-line">Checking your renewal link…</p></div>
+
+<section style="padding-top:24px"><div class="wrap split">
+  <div>
+    <h2>Keep watching</h2>
+    <p>Add your email, and your Discord username if you use Discord, then choose how to pay. Your login and app set-up stay exactly the same.</p>
+    <p class="muted">Once your details are added, we’ll send your renewal reminders automatically. Card and crypto payments renew your line straight away.</p>
+  </div>
+  <form class="order renew" data-done="Done! Check your email for your payment details.">
+    <input type="hidden" name="c" value="">
+    <label>Name<input name="name" autocomplete="name" required maxlength="80"></label>
+    <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+    <label class="full">Discord username <small>Optional. If you add it, your renewal opens in a private chat in our Discord</small><input name="discord" maxlength="40" autocapitalize="none" placeholder="e.g. alex_1234"></label>
+    <label class="full">How would you like to pay?
+      <select name="method"><option value="kofi">Card, Apple Pay or Google Pay</option><option value="crypto">Crypto (USDT)</option><option value="wise">Wise</option><option value="payid">PayID (Australia only)</option></select></label>
+    <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+    <div class="full"><button class="btn solid" type="submit">Renew my line</button></div>
+    <p class="form-msg" role="status" aria-live="polite"></p>
+  </form>
+</div></section>
+'''
+
 TRIAL = '''
 <div class="wrap page-head"><h1>Try Mitsflix free for a day</h1><p>Choose your channels and we’ll send you a login for 24 hours. No payment needed.</p></div>
 
@@ -339,6 +362,7 @@ CONTENT = {
     'guides': ('Setup guides', 'Step-by-step setup for Fire TV, Google TV, Android and Apple, plus buffering fixes.', GUIDES),
     'pricing': ('Pricing', 'Mitsflix is $100 AUD for 12 months. Sign up in a minute.', PRICING),
     'resellers': ('Resellers', 'Sell Mitsflix with your own reseller panel. Create and renew accounts yourself and set your own prices.', RESELLERS),
+    'renew': ('Renew', 'Renew your Mitsflix line. Your login and set-up stay the same.', RENEW),
     'trial': ('Free trial', 'Try Mitsflix free for 24 hours. Choose your channels and get a login straight away.', TRIAL),
     'support': ('Support', 'Get help with Mitsflix on Discord or by email.', SUPPORT),
 }

@@ -27,6 +27,22 @@
     }
   }
 
+  // The renewal page: the link's code says which line, and the page shows it with its price.
+  const renewForm = document.querySelector('form.renew');
+  if (renewForm) {
+    const c = (new URLSearchParams(location.search).get('c') || '').replace(/[^a-z0-9]/g, '');
+    const head = document.querySelector('.renew-line');
+    renewForm.querySelector('[name=c]').value = c;
+    const stop = (text) => { head.textContent = text; renewForm.querySelectorAll('input, select, button').forEach((el) => { el.disabled = true; }); };
+    if (!c) stop('This page needs the renewal link we sent you. Ask us for it on Discord or at sales@mitsflix.com.');
+    else fetch('https://mitsflix-tickets.sales-eea.workers.dev/renew?c=' + c).then((r) => r.json()).then((j) => {
+      if (!j.ok) return stop(j.error);
+      if (j.linked) return stop(`Line ${j.line} is already linked to you, so your renewal details come by email or Discord. Need a hand? Email sales@mitsflix.com.`);
+      head.textContent = `Line ${j.line} ends on ${j.ends}. Renewing is $${j.price} AUD for 12 months.`;
+      if (j.name) { const n = renewForm.querySelector('[name=name]'); if (!n.value) n.value = j.name; }
+    }).catch(() => stop('We couldn’t load your renewal details. Check your connection and reload the page.'));
+  }
+
   // Sign-up and reseller forms go straight to the Mitsflix team.
   document.querySelectorAll('form.order').forEach((form) => {
     const msg = form.querySelector('.form-msg'), submit = form.querySelector('button[type=submit]');
@@ -37,7 +53,7 @@
       submit.disabled = true; const label = submit.textContent; submit.textContent = 'Sending…';
       msg.className = 'form-msg'; msg.textContent = '';
       try {
-        const r = await fetch('https://mitsflix-tickets.sales-eea.workers.dev/' + (form.classList.contains('trial') ? 'trial' : 'order'), {
+        const r = await fetch('https://mitsflix-tickets.sales-eea.workers.dev/' + (form.classList.contains('trial') ? 'trial' : form.classList.contains('renew') ? 'renew' : 'order'), {
           method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) });
         const j = await r.json().catch(() => ({}));
         if (!r.ok || !j.ok) throw new Error(j.error || 'Your details didn’t send. Check your connection and try again.');
@@ -45,6 +61,13 @@
         form.reset();
         msg.className = 'form-msg ok';
         msg.textContent = form.dataset.done || 'Sent. We’ll email you soon.';
+        if (form.classList.contains('renew')) {
+          form.dataset.sent = '1';
+          msg.textContent = '';
+          if (j.where === 'discord' && j.url) { msg.append('Done! Your renewal chat is open in our Discord: '); const a = document.createElement('a'); a.href = j.url; a.textContent = 'open it here'; msg.append(a, '. Pick how to pay there.'); }
+          else msg.textContent = j.text || 'Done! We’ve emailed your payment details. You’ll get renewal reminders by email from now on.';
+          return;
+        }
         if (form.classList.contains('trial')) {
           if (token) form.querySelector('[name=t]').value = token;
           if (j.auto === false) msg.textContent = j.where === 'email' ? 'Done! We’re setting up your trial now. Your login will be emailed to you shortly.' : 'Done! We’re setting up your trial now. Your login will appear in your Discord chat shortly.';
@@ -58,7 +81,7 @@
       } catch (err) {
         msg.className = 'form-msg err';
         msg.textContent = err.message + ' You can also email sales@mitsflix.com.';
-      } finally { submit.disabled = !!form.dataset.sent; submit.textContent = form.dataset.sent ? 'Trial started' : label; }
+      } finally { submit.disabled = !!form.dataset.sent; submit.textContent = form.dataset.sent ? (form.classList.contains('renew') ? 'Sent' : 'Trial started') : label; }
     });
   });
 })();
