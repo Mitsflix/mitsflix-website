@@ -221,8 +221,8 @@ PRICING = '''
   <h2>Ways to pay</h2>
   <p class="muted">Pick whichever suits you when you sign up. There’s no subscription or automatic charge: we remind you before your 12 months end, and renewing keeps the same login.</p>
   <dl class="pay">
-    <div><dt>Crypto (USDT)</dt><dd>USDT on the TRON network. We give you the exact amount to send, and your login is sent automatically once it arrives.</dd></div>
-    <div><dt>Wise</dt><dd>Pay from your Wise account or with a Wise payment link. Your login follows once we see the payment.</dd></div>
+    <div><dt>Crypto</dt><dd>USDT (TRON), Bitcoin, Litecoin or Solana. We give you the exact amount to send, and your login is sent automatically once it arrives.</dd></div>
+    <div><dt>Wise</dt><dd>Pay from your Wise account or with a Wise payment link, with your Discord username or email as the reference. Your login follows once it arrives.</dd></div>
     <div><dt>PayID</dt><dd>For Australian bank accounts. Use your Discord username or email as the reference, and your login follows once it arrives.</dd></div>
   </dl>
 </div></section>
@@ -341,7 +341,7 @@ RENEW = '''
   <div>
     <h2>Keep watching</h2>
     <p>Add your email, and your Discord username if you use Discord, then choose how to pay. Your login and app set-up stay exactly the same.</p>
-    <p class="muted">Once your details are added, we’ll send your renewal reminders automatically. Card and crypto payments renew your line straight away.</p>
+    <p class="muted">Once your details are added, we’ll send your renewal reminders automatically. Crypto payments renew your line straight away.</p>
   </div>
   <form class="order renew" data-done="Done! Check your email for your payment details.">
     <input type="hidden" name="c" value="">
@@ -349,7 +349,7 @@ RENEW = '''
     <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
     <label class="full">Discord username <small>Optional. If you add it, your renewal opens in a private chat in our Discord</small><input name="discord" maxlength="40" autocapitalize="none" placeholder="e.g. alex_1234"></label>
     <label class="full">How would you like to pay?
-      <select name="method"><option value="crypto">Crypto (USDT)</option><option value="wise">Wise</option><option value="payid">PayID (Australia only)</option></select></label>
+      <select name="method"><option value="crypto">Crypto (USDT, BTC, LTC, SOL)</option><option value="wise">Wise</option><option value="payid">PayID (Australia only)</option></select></label>
     <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
     <div class="full"><button class="btn solid" type="submit">Renew my line</button></div>
     <p class="form-msg" role="status" aria-live="polite"></p>
