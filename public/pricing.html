@@ -59,6 +59,7 @@
     <h2>Sign up</h2>
     <p>Tell us a little about how you’ll watch. We’ll email you payment options, and your login arrives as soon as payment comes through.</p>
     <p class="muted">Prefer Discord? Use the Sign up button in <a href="/discord">our server</a>.</p>
+    <p class="muted">Not sure yet? <a href="/trial">Try Mitsflix free for a day</a>.</p>
   </div>
   <form class="order" data-done="Thanks! We’ve got your details and will email you payment options shortly.">
     <input type="hidden" name="kind" value="signup">
@@ -69,7 +70,9 @@
     <label>Referral code <small>Optional. Your friend’s Discord username. You both get 1 month free</small><input name="ref" maxlength="32" autocapitalize="none" autocomplete="off" spellcheck="false" placeholder="e.g. alex_1234"></label>
     <label class="full">What will you watch on?
       <select name="device" required><option value="">Choose a device</option><option>Fire TV Stick</option><option>Google TV / Android TV</option><option>Android phone or tablet</option><option>iPhone, iPad or Apple TV</option><option>Smart TV</option><option>Computer</option><option>Not sure yet</option></select></label>
-    <label class="full">Anything we should set up? <small>Optional, e.g. English channels only, adult channels on or off</small><textarea name="prefs" maxlength="800"></textarea></label>
+    <label class="full">Channels
+      <select name="bouquet"><option value="en_xxx">English channels + adult</option><option value="en">English channels, no adult</option><option value="ww_xxx">Worldwide channels + adult</option><option value="ww">Worldwide channels, no adult</option></select></label>
+    <label class="full">Anything else we should know? <small>Optional</small><textarea name="prefs" maxlength="800"></textarea></label>
     <label class="full">How did you hear about us? <small>Optional</small><input name="found" maxlength="200"></label>
     <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
     <div class="full"><button class="btn solid" type="submit">Send my details</button></div>

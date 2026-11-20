@@ -193,6 +193,7 @@ PRICING = '''
     <h2>Sign up</h2>
     <p>Tell us a little about how you’ll watch. We’ll email you payment options, and your login arrives as soon as payment comes through.</p>
     <p class="muted">Prefer Discord? Use the Sign up button in <a href="/discord">our server</a>.</p>
+    <p class="muted">Not sure yet? <a href="/trial">Try Mitsflix free for a day</a>.</p>
   </div>
   <form class="order" data-done="Thanks! We’ve got your details and will email you payment options shortly.">
     <input type="hidden" name="kind" value="signup">
@@ -203,7 +204,9 @@ PRICING = '''
     <label>Referral code <small>Optional. Your friend’s Discord username. You both get 1 month free</small><input name="ref" maxlength="32" autocapitalize="none" autocomplete="off" spellcheck="false" placeholder="e.g. alex_1234"></label>
     <label class="full">What will you watch on?
       <select name="device" required><option value="">Choose a device</option><option>Fire TV Stick</option><option>Google TV / Android TV</option><option>Android phone or tablet</option><option>iPhone, iPad or Apple TV</option><option>Smart TV</option><option>Computer</option><option>Not sure yet</option></select></label>
-    <label class="full">Anything we should set up? <small>Optional, e.g. English channels only, adult channels on or off</small><textarea name="prefs" maxlength="800"></textarea></label>
+    <label class="full">Channels
+      <select name="bouquet"><option value="en_xxx">English channels + adult</option><option value="en">English channels, no adult</option><option value="ww_xxx">Worldwide channels + adult</option><option value="ww">Worldwide channels, no adult</option></select></label>
+    <label class="full">Anything else we should know? <small>Optional</small><textarea name="prefs" maxlength="800"></textarea></label>
     <label class="full">How did you hear about us? <small>Optional</small><input name="found" maxlength="200"></label>
     <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
     <div class="full"><button class="btn solid" type="submit">Send my details</button></div>
@@ -308,12 +311,35 @@ SUPPORT = '''
 </div></section>
 '''
 
+TRIAL = '''
+<div class="wrap page-head"><h1>Try Mitsflix free for a day</h1><p>Choose your channels and we’ll send you a login for 24 hours. No payment needed.</p></div>
+
+<section style="padding-top:24px"><div class="wrap split">
+  <div>
+    <h2>How it works</h2>
+    <p>Start your trial below. Your login arrives by email, or in Discord if you came from our server. Set it up with our free <a href="/download">Mitsflix Player</a> app and watch for 24 hours.</p>
+    <p class="muted">To keep trials fair, there’s one per person, and we check the connection a trial is started from. Please turn off any VPN while you start it. We give out a limited number of trials each day.</p>
+  </div>
+  <form class="order trial" data-done="Done! Check your email for your trial login.">
+    <input type="hidden" name="t" value="">
+    <label class="who">Name<input name="name" autocomplete="name" required maxlength="100"></label>
+    <label class="who">Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
+    <label class="full">Channels
+      <select name="bouquet"><option value="en_xxx">English channels + adult</option><option value="en">English channels, no adult</option><option value="ww_xxx">Worldwide channels + adult</option><option value="ww">Worldwide channels, no adult</option></select></label>
+    <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
+    <div class="full"><button class="btn solid" type="submit">Start my free trial</button></div>
+    <p class="form-msg" role="status" aria-live="polite"></p>
+  </form>
+</div></section>
+'''
+
 CONTENT = {
     'index': ('Home', 'Live TV, sport, movies and series in one service. $100 AUD a year, with our free Mitsflix Player app.', HOME),
     'download': ('Download', 'Download Mitsflix Player for Fire TV, Google TV, Android, Windows and Linux. Downloader code 6284643.', DOWNLOAD),
     'guides': ('Setup guides', 'Step-by-step setup for Fire TV, Google TV, Android and Apple, plus buffering fixes.', GUIDES),
     'pricing': ('Pricing', 'Mitsflix is $100 AUD for 12 months. Sign up in a minute.', PRICING),
     'resellers': ('Resellers', 'Sell Mitsflix with your own reseller panel. Create and renew accounts yourself and set your own prices.', RESELLERS),
+    'trial': ('Free trial', 'Try Mitsflix free for 24 hours. Choose your channels and get a login straight away.', TRIAL),
     'support': ('Support', 'Get help with Mitsflix on Discord or by email.', SUPPORT),
 }
 

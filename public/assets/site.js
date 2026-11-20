@@ -16,6 +16,17 @@
     document.querySelectorAll('input[name=ref]').forEach((el) => { if (code && !el.value) el.value = code; });
   } catch (e) { /* storage unavailable: the box just stays empty */ }
 
+  // The trial page: a link from the Discord trial button carries a one-time token, so name and email aren't needed.
+  const trialForm = document.querySelector('form.trial');
+  if (trialForm) {
+    const t = (new URLSearchParams(location.search).get('t') || '').replace(/[^a-f0-9]/g, '');
+    if (t) {
+      trialForm.querySelector('[name=t]').value = t;
+      trialForm.querySelectorAll('label.who').forEach((l) => { l.style.display = 'none'; l.querySelector('input').required = false; });
+      trialForm.dataset.done = 'Done! Your trial login is on its way to you in Discord.';
+    }
+  }
+
   // Sign-up and reseller forms go straight to the Mitsflix team.
   document.querySelectorAll('form.order').forEach((form) => {
     const msg = form.querySelector('.form-msg'), submit = form.querySelector('button[type=submit]');
@@ -26,13 +37,19 @@
       submit.disabled = true; const label = submit.textContent; submit.textContent = 'Sending…';
       msg.className = 'form-msg'; msg.textContent = '';
       try {
-        const r = await fetch('https://mitsflix-tickets.sales-eea.workers.dev/order', {
+        const r = await fetch('https://mitsflix-tickets.sales-eea.workers.dev/' + (form.classList.contains('trial') ? 'trial' : 'order'), {
           method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) });
         const j = await r.json().catch(() => ({}));
         if (!r.ok || !j.ok) throw new Error(j.error || 'Your details didn’t send. Check your connection and try again.');
+        const token = form.querySelector('[name=t]')?.value;
         form.reset();
         msg.className = 'form-msg ok';
         msg.textContent = form.dataset.done || 'Sent. We’ll email you soon.';
+        if (form.classList.contains('trial')) {
+          if (token) form.querySelector('[name=t]').value = token;
+          if (j.auto === false) msg.textContent = j.where === 'email' ? 'Done! We’re setting up your trial now. Your login will be emailed to you shortly.' : 'Done! We’re setting up your trial now. Your login will appear in your Discord chat shortly.';
+          form.dataset.sent = '1'; return;
+        }
         // Sign-ups with a Discord username get a private chat with us there.
         const join = document.createElement('a');
         join.href = '/discord'; join.textContent = 'Join our Discord';
@@ -41,7 +58,7 @@
       } catch (err) {
         msg.className = 'form-msg err';
         msg.textContent = err.message + ' You can also email sales@mitsflix.com.';
-      } finally { submit.disabled = false; submit.textContent = label; }
+      } finally { submit.disabled = !!form.dataset.sent; submit.textContent = form.dataset.sent ? 'Trial started' : label; }
     });
   });
 })();
