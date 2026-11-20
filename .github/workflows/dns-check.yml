@@ -4,12 +4,21 @@ jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - env:
-          K: ${{ secrets.OPENSUB_API_KEY }}
-        run: |
-          python3 - <<'PY'
-          import os,re
-          k=os.environ['K']
-          print('SHAPE', len(k), 'chars;', 'alnum only' if k.isalnum() else 'has other chars: ' + ''.join(sorted(set(c for c in k if not c.isalnum())))[:20], '| lines:', k.count('\n')+1, '| looks like 32-char key inside:', bool(re.fullmatch(r'[A-Za-z0-9]{32}', k)))
-          PY
-          printf 'SEARCH -> '; curl -s -L -o /tmp/r -w '%{http_code} ' -H "Api-Key: $K" -H "User-Agent: MitsflixPlayer v1.2" "https://api.opensubtitles.com/api/v1/subtitles?languages=en&query=the+matrix"; head -c 150 /tmp/r; echo
+      - run: |
+          curl -s https://rdap.verisign.com/com/v1/domain/mitsflix.com | python3 -c "
+          import json,sys
+          d=json.load(sys.stdin)
+          print('STATUS', d.get('status'))
+          print('REGISTRAR', [v[3] for e in d['entities'] for v in e['vcardArray'][1] if v[0]=='fn'])
+          print('EVENTS', [(e['eventAction'],e['eventDate']) for e in d['events']])
+          print('DNSSEC', d.get('secureDNS',{}).get('delegationSigned'))
+          print('NS', [n['ldhName'] for n in d['nameservers']])"
+          for p in / /android /linux; do printf 'SITE %-10s ' "$p"; curl -s -o /dev/null -r 0-99 -m 25 -w '%{http_code}\n' "https://mitsflix.com$p" || echo unreachable; done
+          for r in 1.1.1.1 8.8.8.8 9.9.9.9; do printf 'RESOLVER %s ' $r; dig +dnssec +noall +comments A mitsflix.com @$r | grep -o -E "status: [A-Z]+|flags: [a-z ]+" | tr '\n' ' '; echo; done  # validating resolvers
+          printf 'DNSKEY at Cloudflare: '; dig +short DNSKEY mitsflix.com @lochlan.ns.cloudflare.com | wc -l
+          printf 'DS at registry: '; dig +short DS mitsflix.com @a.gtld-servers.net | wc -l
+          for i in 1 2 3 4 5 6 7 8; do printf 'GOOGLE %s ' $i; dig +noall +comments A mitsflix.com @8.8.8.8 | grep -o -E "status: [A-Z]+|EDE: [^)]*\)" | tr '\n' ' '; printf '| DS seen: '; dig +short DS mitsflix.com @8.8.8.8 | awk '{print $1}' | tr '\n' ' '; echo; sleep 1; done
+          printf 'GOOGLE8844 '; dig +noall +comments A mitsflix.com @8.8.4.4 | grep -o -E "status: [A-Z]+"
+          echo "MAILMX $(dig +short MX mitsflix.com @1.1.1.1 | tr '\n' ' ')"
+          echo "MAILSPF $(dig +short TXT mitsflix.com @1.1.1.1 | grep -i spf | tr '\n' ' ')"
+          echo "MAILAUTO $(dig +short CNAME autodiscover.mitsflix.com @1.1.1.1)"
