@@ -2,6 +2,7 @@
 const FILES = {
   '/android': ['https://github.com/Mitsflix/MitsflixPlayer/releases/latest/download/MitsflixPlayer.apk', 'MitsflixPlayer.apk', 'application/vnd.android.package-archive'],
   '/windows': ['https://github.com/Mitsflix/MitsflixPlayer-Windows/releases/latest/download/MitsflixPlayer-Setup.exe', 'MitsflixPlayer-Setup.exe', 'application/octet-stream'],
+  '/mac': ['https://github.com/Mitsflix/MitsflixPlayer-Windows/releases/latest/download/MitsflixPlayer.dmg', 'MitsflixPlayer.dmg', 'application/x-apple-diskimage'],
   '/linux': ['https://github.com/Mitsflix/MitsflixPlayer-Windows/releases/latest/download/MitsflixPlayer.deb', 'MitsflixPlayer.deb', 'application/vnd.debian.binary-package'],
   '/linux-appimage': ['https://github.com/Mitsflix/MitsflixPlayer-Windows/releases/latest/download/MitsflixPlayer.AppImage', 'MitsflixPlayer.AppImage', 'application/octet-stream'],
 };

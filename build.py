@@ -77,7 +77,7 @@ HOME = f'''
     <li><b>Movies and series on demand</b><span>New titles added every day, with posters, plots and trailers.</span></li>
     <li><b>Download movies and shows</b><span>Save them to your device and watch offline, on a plane, at work camp or anywhere without internet.</span></li>
     <li><b>Record live TV</b><span>Record a match or show to watch later, or set a time and it records by itself.</span></li>
-    <li><b>Our own free app</b><span>Mitsflix Player for Fire TV, Google TV, Android, Windows and Linux, with Continue Watching and subtitles for movies and shows.</span></li>
+    <li><b>Our own free app</b><span>Mitsflix Player for Fire TV, Google TV, Android, Windows, Mac and Linux, with Continue Watching and subtitles for movies and shows.</span></li>
     <li><b>Real people helping you</b><span>Private support tickets on Discord, or email us any time.</span></li>
   </ul>
 </div></section>
@@ -104,13 +104,15 @@ HOME = f'''
 '''
 
 DOWNLOAD = '''
-<div class="wrap page-head"><h1>Download</h1><p>Mitsflix Player is free, has no ads and updates itself. On Fire TV, Google TV, Android, Windows and Linux you can download movies and shows to watch offline, record live TV and add subtitles.</p></div>
+<div class="wrap page-head"><h1>Download</h1><p>Mitsflix Player is free, has no ads and updates itself. On Fire TV, Google TV, Android, Windows, Mac and Linux you can download movies and shows to watch offline, record live TV and add subtitles.</p></div>
 <section style="padding-top:0"><div class="wrap">
   <div class="rows">
     <div class="row"><h3>Fire TV &amp; Google TV</h3><p>Install the <b>Downloader</b> app, open it and enter this code. It always installs the latest version. <a href="/guides#fire-tv">Step-by-step guide</a></p><div class="code">6284643</div></div>
     <div class="row"><h3>Android phone or tablet</h3><p>Download the APK file and open it to install. <a href="/guides#android">Step-by-step guide</a></p><a class="btn solid" href="/android">Download APK</a></div>
     <div class="row"><h3>Windows <span class="tag">Beta</span></h3><p>Mitsflix Player for Windows 10 and 11, with offline downloads and live TV recording. If Windows shows a blue warning, choose <b>More info</b>, then <b>Run anyway</b>.</p><a class="btn" href="/windows">Download for Windows</a></div>
+    <div class="row"><h3>Mac <span class="tag">Beta</span></h3><p>Mitsflix Player for Macs with Apple silicon or Intel (macOS 11 or newer). Open the download and drag Mitsflix Player into Applications. The first time, macOS asks you to approve it. <a href="/guides#computer">Step-by-step guide</a></p><a class="btn" href="/mac">Download for Mac</a></div>
     <div class="row"><h3>Linux <span class="tag">Beta</span></h3><p>The same player for Linux. On Ubuntu, Debian or Mint, download the .deb and open it. On other systems use the <a href="/linux-appimage">AppImage</a>: make it executable, then open it.</p><a class="btn" href="/linux">Download for Linux</a></div>
+    <div class="row"><h3>Chromebook &amp; Steam Deck</h3><p>Chromebooks with an Intel or AMD processor run the Linux version, and so does the Steam Deck. <a href="/guides#chromebook">Chromebook guide</a> · <a href="/guides#steam-deck">Steam Deck guide</a></p></div>
     <div class="row"><h3>iPhone, iPad &amp; Apple TV</h3><p>Install <b>TiviMax Premium</b> from the App Store and add your Mitsflix login. <a href="/guides#apple">Step-by-step guide</a></p><a class="btn" href="https://apps.apple.com/au/app/id1632953327">Open App Store</a></div>
   </div>
   <p class="muted" style="margin-top:28px">Fire TV and Android need Android 8 or newer. Fire TV Sticks with <b>Select</b> or <b>HD</b> in the name aren’t powerful enough.</p>
@@ -125,7 +127,7 @@ STEP4 = '''<ol class="do">
 
 GUIDES = f'''
 <div class="wrap page-head"><h1>Setup guides</h1><p>Pick your device. Each guide takes about five minutes.</p>
-<ul class="guide-nav"><li><a href="#fire-tv">Fire TV &amp; Google TV</a></li><li><a href="#android">Android phone</a></li><li><a href="#apple">Apple</a></li><li><a href="#fixes">Buffering fixes</a></li></ul></div>
+<ul class="guide-nav"><li><a href="#fire-tv">Fire TV &amp; Google TV</a></li><li><a href="#android">Android phone</a></li><li><a href="#apple">iPhone &amp; Apple TV</a></li><li><a href="#computer">Windows, Mac &amp; Linux</a></li><li><a href="#chromebook">Chromebook</a></li><li><a href="#steam-deck">Steam Deck</a></li><li><a href="#fixes">Buffering fixes</a></li></ul></div>
 
 <div class="wrap">
 <article class="howto" id="fire-tv"><h2>Fire TV, Google TV &amp; Android TV</h2>
@@ -150,6 +152,31 @@ GUIDES = f'''
   <li>Add a playlist using <b>Xtream Codes</b>.</li><li><b>Server</b>, <b>Username</b> and <b>Password:</b> copy them exactly from the welcome email we sent you.</li></ol>
 </article>
 
+<article class="howto" id="computer"><h2>Windows, Mac &amp; Linux</h2>
+  <h3>Windows 10 or 11</h3>
+  <ol class="do"><li><a href="/windows">Download Mitsflix Player for Windows</a> and open the file.</li><li>If a blue “Windows protected your PC” box appears, choose <b>More info</b>, then <b>Run anyway</b>.</li><li>Follow the installer. Mitsflix Player opens when it’s done.</li></ol>
+  <h3>Mac</h3>
+  <ol class="do"><li><a href="/mac">Download Mitsflix Player for Mac</a> and open the file.</li><li>Drag <b>Mitsflix Player</b> into the <b>Applications</b> folder.</li><li>Open Mitsflix Player from Applications. macOS says it can’t check the app: choose <b>Done</b>.</li><li>Open <b>System Settings</b>, then <b>Privacy &amp; Security</b>. Scroll down and choose <b>Open Anyway</b> next to Mitsflix Player, then confirm.</li></ol>
+  <p class="note">You only need to approve it once. On older macOS versions, right-click the app, choose <b>Open</b>, then <b>Open</b> again.</p>
+  <h3>Linux</h3>
+  <ol class="do"><li>On Ubuntu, Debian or Mint, <a href="/linux">download the .deb</a> and open it to install.</li><li>On other systems, <a href="/linux-appimage">download the AppImage</a>, make it executable (right-click, Properties, Permissions), then open it.</li></ol>
+  <h3>Add your login</h3>{STEP4}
+</article>
+
+<article class="howto" id="chromebook"><h2>Chromebook</h2>
+  <p>This works on Chromebooks with an Intel or AMD processor. It uses the Chromebook’s built-in Linux.</p>
+  <ol class="do"><li>Open <b>Settings</b>, then <b>About ChromeOS</b>, <b>Developers</b>, and turn on <b>Linux development environment</b>. Follow the steps (the defaults are fine).</li>
+  <li><a href="/linux">Download the .deb file</a>.</li><li>Open the <b>Files</b> app, double-click the file and choose <b>Install</b>.</li><li>Open <b>Mitsflix Player</b> from the launcher. It’s in the <b>Linux apps</b> folder.</li></ol>
+  <h3>Add your login</h3>{STEP4}
+</article>
+
+<article class="howto" id="steam-deck"><h2>Steam Deck</h2>
+  <ol class="do"><li>Press the <b>Steam</b> button, then <b>Power</b>, then <b>Switch to Desktop</b>.</li><li>Open the web browser and <a href="/linux-appimage">download the AppImage</a>.</li>
+  <li>In the <b>Downloads</b> folder, right-click the file, choose <b>Properties</b>, then <b>Permissions</b>, and tick <b>Is executable</b>.</li>
+  <li>To use it in Gaming Mode: open <b>Steam</b>, then <b>Games</b>, <b>Add a Non-Steam Game</b>, choose the file and press <b>Add</b>.</li>
+  <li>Go back to Gaming Mode. Mitsflix Player is in your library under <b>Non-Steam</b>.</li></ol>
+  <h3>Add your login</h3>{STEP4}
+</article>
 
 <article class="howto" id="fixes"><h2>Buffering or not loading</h2>
   <ol class="do">
@@ -369,8 +396,8 @@ TRIAL = '''
 
 CONTENT = {
     'index': ('Home', 'Live TV, sport, movies and series in one service. $100 AUD a year, with our free Mitsflix Player app.', HOME),
-    'download': ('Download', 'Download Mitsflix Player for Fire TV, Google TV, Android, Windows and Linux. Downloader code 6284643.', DOWNLOAD),
-    'guides': ('Setup guides', 'Step-by-step setup for Fire TV, Google TV, Android and Apple, plus buffering fixes.', GUIDES),
+    'download': ('Download', 'Download Mitsflix Player for Fire TV, Google TV, Android, Windows, Mac and Linux. Downloader code 6284643.', DOWNLOAD),
+    'guides': ('Setup guides', 'Step-by-step setup for Fire TV, Google TV, Android, Apple, Windows, Mac, Linux, Chromebook and Steam Deck, plus buffering fixes.', GUIDES),
     'pricing': ('Pricing', 'Mitsflix is $100 AUD for 12 months. Sign up in a minute.', PRICING),
     'resellers': ('Resellers', 'Sell Mitsflix with your own reseller panel. Create and renew accounts yourself and set your own prices.', RESELLERS),
     'renew': ('Renew', 'Renew your Mitsflix line. Your login and set-up stay the same.', RENEW),
