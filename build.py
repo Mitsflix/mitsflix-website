@@ -112,7 +112,7 @@ DOWNLOAD = '''
     <div class="row"><h3>Windows <span class="tag">Beta</span></h3><p>Mitsflix Player for Windows 10 and 11, with offline downloads and live TV recording. If Windows shows a blue warning, choose <b>More info</b>, then <b>Run anyway</b>.</p><a class="btn" href="/windows">Download for Windows</a></div>
     <div class="row"><h3>Mac <span class="tag">Beta</span></h3><p>Mitsflix Player for Macs with Apple silicon or Intel (macOS 11 or newer). Open the download and drag Mitsflix Player into Applications. The first time, macOS asks you to approve it. <a href="/guides#computer">Step-by-step guide</a></p><a class="btn" href="/mac">Download for Mac</a></div>
     <div class="row"><h3>Linux <span class="tag">Beta</span></h3><p>The same player for Linux. On Ubuntu, Debian or Mint, download the .deb and open it. On other systems use the <a href="/linux-appimage">AppImage</a>: make it executable, then open it.</p><a class="btn" href="/linux">Download for Linux</a></div>
-    <div class="row"><h3>Web browser <span class="tag">Beta</span></h3><p>Watch on any computer, iPhone or iPad without installing anything: open the web player and sign in with your login. In Safari, the <b>AirPlay</b> button sends it to your Apple TV. Some movies (.mkv files) only play in the apps. Downloads and recording need the app.</p><a class="btn" href="/watch">Open web player</a></div>
+    <div class="row"><h3>Web browser <span class="tag">Beta</span></h3><p>Watch on any computer, iPhone or iPad without installing anything: open the web player and sign in with your login. In Safari, the <b>AirPlay</b> button sends it to your Apple TV. Not all content works in a browser: some movies, shows and channels only play in the apps. Downloads and recording need the app too.</p><a class="btn" href="/watch">Open web player</a></div>
     <div class="row"><h3>Chromebook &amp; Steam Deck</h3><p>Chromebooks with an Intel or AMD processor run the Linux version, and so does the Steam Deck. <a href="/guides#chromebook">Chromebook guide</a> · <a href="/guides#steam-deck">Steam Deck guide</a></p></div>
     <div class="row"><h3>iPhone, iPad &amp; Apple TV</h3><p>Install <b>TiviMax Premium</b> from the App Store and add your Mitsflix login. <a href="/guides#apple">Step-by-step guide</a></p><a class="btn" href="https://apps.apple.com/au/app/id1632953327">Open App Store</a></div>
   </div>
@@ -156,7 +156,7 @@ GUIDES = f'''
 </article>
 
 <article class="howto" id="apple"><h2>iPhone, iPad &amp; Apple TV</h2>
-  <p>No app needed: you can also open the <a href="/watch">web player</a> in Safari, sign in, and use the <b>AirPlay</b> button to watch on your Apple TV. For the best experience, use TiviMax Premium:</p>
+  <p>No app needed: you can also open the <a href="/watch">web player</a> in Safari, sign in, and use the <b>AirPlay</b> button to watch on your Apple TV. Not all content works in a browser, so for the best experience use TiviMax Premium:</p>
   <ol class="do"><li>Install <b><a href="https://apps.apple.com/au/app/id1632953327">TiviMax Premium</a></b> from the App Store.</li>
   <li>Add a playlist using <b>Xtream Codes</b>.</li><li><b>Server</b>, <b>Username</b> and <b>Password:</b> copy them exactly from the welcome email we sent you.</li></ol>
 </article>
