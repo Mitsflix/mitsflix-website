@@ -116,7 +116,7 @@ DOWNLOAD = '''
     <div class="row"><h3>Chromebook &amp; Steam Deck</h3><p>Chromebooks with an Intel or AMD processor run the Linux version, and so does the Steam Deck. <a href="/guides#chromebook">Chromebook guide</a> · <a href="/guides#steam-deck">Steam Deck guide</a></p></div>
     <div class="row"><h3>iPhone, iPad &amp; Apple TV</h3><p>Install <b>TiviMax Premium</b> from the App Store and add your Mitsflix login. <a href="/guides#apple">Step-by-step guide</a></p><a class="btn" href="https://apps.apple.com/au/app/id1632953327">Open App Store</a></div>
   </div>
-  <p class="muted" style="margin-top:28px">Fire TV and Android need Android 8 or newer. Fire TV Sticks with <b>Select</b> or <b>HD</b> in the name aren’t powerful enough.</p>
+  <p class="muted" style="margin-top:28px">Fire TV needs Fire OS 7 or newer, and Android needs Android 8 or newer. Fire TV Sticks from before 2020 are too old, and the newest Fire TV Sticks that run Amazon’s Vega OS (like the Fire TV Stick 4K Select) can’t install apps. <a href="/guides#fire-tv-check">Check your Fire TV</a></p>
 </div></section>
 '''
 
@@ -132,6 +132,12 @@ GUIDES = f'''
 
 <div class="wrap">
 <article class="howto" id="fire-tv"><h2>Fire TV, Google TV &amp; Android TV</h2>
+  <h3 id="fire-tv-check">Will my device work?</h3>
+  <p>Mitsflix Player needs <b>Fire OS 7 or newer</b> on Fire TV, or <b>Android 8 or newer</b> on Google TV and Android TV boxes.</p>
+  <ul class="do"><li><b>Works:</b> Fire TV Stick (3rd gen, 2020) and Fire TV Stick Lite, Fire TV Stick 4K Max (any), Fire TV Stick 4K (2nd gen, 2023), Fire TV Stick 4K Plus, Fire TV Stick HD (2024), Fire TV Cube (3rd gen), Google TV Streamer 4K, Chromecast with Google TV, and most Fire TV and Google TV smart TVs.</li>
+  <li><b>Too old:</b> Fire TV Stick 1st and 2nd gen and Basic Edition (2014 to 2019), the first Fire TV Stick 4K (2018), Fire TV Cube 1st gen (2018) and the older Fire TV boxes. They’re stuck on Fire OS 5 or 6.</li>
+  <li><b>Can’t install apps:</b> Fire TV Stick 4K Select, Fire TV Stick HD (2nd gen, 2026) and the newest Fire TV Stick 4K run Amazon’s Vega OS, which doesn’t allow Downloader or any outside apps.</li></ul>
+  <p class="note">Not sure? On your Fire TV go to Settings, My Fire TV, About and look at the software version. <b>Fire OS 7</b> or <b>8</b> works. <b>Fire OS 5</b> or <b>6</b> is too old. If it just says <b>OS 1</b> or similar, it’s Vega OS. If yours won’t work, we recommend a Google TV Streamer 4K, or a Fire TV Stick 4K Max as the cheaper option.</p>
   <h3>Install Downloader</h3>
   <ol class="do"><li>Go to <b>Search</b>. On Google TV, open the <b>Play Store</b>.</li><li>Type <b>Downloader</b>.</li><li>Install the orange <b>Downloader</b> app.</li></ol>
   <h3>Allow unknown apps</h3>
@@ -144,6 +150,7 @@ GUIDES = f'''
 </article>
 
 <article class="howto" id="android"><h2>Android phone or tablet</h2>
+  <p>Needs Android 8 or newer. To check, go to Settings, About phone, Android version.</p>
   <ol class="do"><li>On your phone, <a href="/android">download the Mitsflix Player APK</a>.</li><li>Open the file. If asked, allow your browser to install unknown apps, then press <b>Install</b>.</li></ol>
   <h3>Add your login</h3>{STEP4}
 </article>
@@ -325,7 +332,7 @@ SUPPORT = '''
 <section><div class="wrap">
   <h2>Questions</h2>
   <details><summary>How many screens can I watch on?</summary><p>One at a time. You can install the app on as many devices as you like, but only one can play at once.</p></details>
-  <details><summary>Which device should I buy?</summary><p>A Google TV Streamer 4K or a Fire TV Stick 4K Max. Avoid Fire TV Sticks with Select or HD in the name, they aren’t powerful enough.</p></details>
+  <details><summary>Which device should I buy?</summary><p>A Google TV Streamer 4K, or a Fire TV Stick 4K Max as the cheaper option. Avoid the Fire TV Stick 4K Select and other Fire TV Sticks that run Vega OS: they can’t install apps. Fire TV Sticks from before 2020 are too old.</p></details>
   <details><summary>How do I pay?</summary><p>After you sign up we email you the payment options. Your login is sent as soon as payment comes through.</p></details>
   <details><summary>A channel isn’t working. What do I do?</summary><p>First try one of the backup server addresses from your welcome email. If it still won’t play, report it in our Discord and we’ll look into it.</p></details>
   <details><summary>It keeps buffering.</summary><p>Follow the <a href="/guides#fixes">buffering fixes</a>. Switching to a backup server address or setting Cloudflare DNS on your modem fixes most cases.</p></details>

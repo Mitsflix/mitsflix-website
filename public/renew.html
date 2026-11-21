@@ -36,7 +36,7 @@
   <div>
     <h2>Keep watching</h2>
     <p>Add your email, and your Discord username if you use Discord, then choose how to pay. Your login and app set-up stay exactly the same.</p>
-    <p class="muted">Once your details are added, we’ll send your renewal reminders automatically. Card and crypto payments renew your line straight away.</p>
+    <p class="muted">Once your details are added, we’ll send your renewal reminders automatically. Crypto, Wise and PayID payments renew your line straight away.</p>
   </div>
   <form class="order renew" data-done="Done! Check your email for your payment details.">
     <input type="hidden" name="c" value="">
@@ -44,7 +44,7 @@
     <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
     <label class="full">Discord username <small>Optional. If you add it, your renewal opens in a private chat in our Discord</small><input name="discord" maxlength="40" autocapitalize="none" placeholder="e.g. alex_1234"></label>
     <label class="full">How would you like to pay?
-      <select name="method"><option value="crypto">Crypto (USDT)</option><option value="wise">Wise</option><option value="payid">PayID (Australia only)</option></select></label>
+      <select name="method"><option value="crypto">Crypto (USDT, USDC, BTC, LTC, DOGE, XRP, XLM, SOL)</option><option value="wise">Wise</option><option value="payid">PayID (Australia only)</option></select></label>
     <label class="hp" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label>
     <div class="full"><button class="btn solid" type="submit">Renew my line</button></div>
     <p class="form-msg" role="status" aria-live="polite"></p>
