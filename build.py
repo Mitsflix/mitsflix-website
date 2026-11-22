@@ -87,7 +87,7 @@ HOME = f'''
   <ol class="steps">
     <li><b>Sign up</b><span>Fill in the short form. We email you payment options.</span></li>
     <li><b>Get your login</b><span>Once paid, your username and password arrive by email.</span></li>
-    <li><b>Install and watch</b><span>Install Mitsflix Player with Downloader code 6284643, add your login and press play.</span></li>
+    <li><b>Install and watch</b><span>Install Mitsflix Player with Downloader code 9390706, add your login and press play.</span></li>
   </ol>
   <div class="btns" style="margin-top:36px"><a class="btn solid" href="/pricing#sign-up">Sign up</a><a class="btn" href="/guides">See the setup guides</a></div>
 </div></section>
@@ -107,7 +107,7 @@ DOWNLOAD = '''
 <div class="wrap page-head"><h1>Download</h1><p>Mitsflix Player is free, has no ads and updates itself. On Fire TV, Google TV, Android, Windows, Mac and Linux you can download movies and shows to watch offline, record live TV and add subtitles.</p></div>
 <section style="padding-top:0"><div class="wrap">
   <div class="rows">
-    <div class="row"><h3>Fire TV &amp; Google TV</h3><p>Install the <b>Downloader</b> app, open it and enter this code. It always installs the latest version. <a href="/guides#fire-tv">Step-by-step guide</a></p><div class="code">6284643</div></div>
+    <div class="row"><h3>Fire TV &amp; Google TV</h3><p>Install the <b>Downloader</b> app, open it and enter this code. It always installs the latest version. <a href="/guides#fire-tv">Step-by-step guide</a></p><div class="code">9390706</div></div>
     <div class="row"><h3>Android phone or tablet</h3><p>Download the APK file and open it to install. <a href="/guides#android">Step-by-step guide</a></p><a class="btn solid" href="/android">Download APK</a></div>
     <div class="row"><h3>Windows <span class="tag">Beta</span></h3><p>Mitsflix Player for Windows 10 and 11, with offline downloads and live TV recording. If Windows shows a blue warning, choose <b>More info</b>, then <b>Run anyway</b>.</p><a class="btn" href="/windows">Download for Windows</a></div>
     <div class="row"><h3>Mac <span class="tag">Beta</span></h3><p>Mitsflix Player for Macs with Apple silicon or Intel (macOS 11 or newer). Open the download and drag Mitsflix Player into Applications. The first time, macOS asks you to approve it. <a href="/guides#computer">Step-by-step guide</a></p><a class="btn" href="/mac">Download for Mac</a></div>
@@ -145,7 +145,7 @@ GUIDES = f'''
   <li><b>Google TV:</b> Settings, Apps, Security &amp; restrictions, Unknown sources, then turn <b>Downloader</b> on.</li></ol>
   <p class="note">No Developer Options on your Fire TV? Go to Settings, My Fire TV, About, click <b>Fire TV Stick</b> seven times, then go back.</p>
   <h3>Install Mitsflix Player</h3>
-  <ol class="do"><li>Open <b>Downloader</b>.</li><li>Enter code <b>6284643</b> and press <b>Go</b>.</li><li>Press <b>Install</b>, then <b>Open</b>.</li></ol>
+  <ol class="do"><li>Open <b>Downloader</b>.</li><li>Enter code <b>9390706</b> and press <b>Go</b>.</li><li>Press <b>Install</b>, then <b>Open</b>.</li></ol>
   <h3>Add your login</h3>{STEP4}
 </article>
 
@@ -388,7 +388,7 @@ TRIAL = '''
 
 CONTENT = {
     'index': ('Home', 'Live TV, sport, movies and series in one service. $100 AUD a year, with our free Mitsflix Player app.', HOME),
-    'download': ('Download', 'Download Mitsflix Player for Fire TV, Google TV, Android, Windows, Mac and Linux. Downloader code 6284643.', DOWNLOAD),
+    'download': ('Download', 'Download Mitsflix Player for Fire TV, Google TV, Android, Windows, Mac and Linux. Downloader code 9390706.', DOWNLOAD),
     'guides': ('Setup guides', 'Step-by-step setup for Fire TV, Google TV, Android, Apple, Windows, Mac, Linux, Chromebook and Steam Deck, plus buffering fixes.', GUIDES),
     'pricing': ('Pricing', 'Mitsflix is $100 AUD for 12 months. Sign up in a minute.', PRICING),
     'resellers': ('Resellers', 'Sell Mitsflix with your own reseller panel. Create and renew accounts yourself and set your own prices.', RESELLERS),
