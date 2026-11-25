@@ -1,0 +1,10 @@
+name: API check
+on: workflow_dispatch
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "GET renew:"; curl -s "https://mitsflix.com/api/renew?c=test123"; echo
+          echo "POST order (empty, should be rejected):"; curl -s -X POST https://mitsflix.com/api/order -H 'content-type: application/json' -H 'origin: https://mitsflix.com' -d '{}'; echo
+          echo "site.js uses api:"; curl -s https://mitsflix.com/assets/site.js | grep -c "api('renew"
