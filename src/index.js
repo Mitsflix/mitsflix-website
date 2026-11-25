@@ -8,7 +8,7 @@ const FILES = {
 };
 FILES['/appimage'] = FILES['/linux-appimage'];
 FILES['/apk'] = FILES['/app'] = FILES['/android'];
-const LINKS = { '/discord': 'https://discord.gg/zFqtpf4XXn' };
+const LINKS = { '/discord': 'https://discord.gg/zFqtpf4XXn', '/facebook': 'https://www.facebook.com/mitsflixpage' };
 
 // Subtitle search for the Mitsflix Player apps: passes a handful of OpenSubtitles calls through,
 // adding the app's key (the OPENSUB_API_KEY secret) so it never ships inside an app.

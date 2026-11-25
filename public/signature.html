@@ -1,0 +1,32 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
+<title>Mitsflix email signature</title>
+<style>body{margin:0;background:#f4f1ea;font:15px/1.5 Arial,sans-serif;color:#2a2620}main{max-width:600px;margin:0 auto;padding:24px 16px}
+h1{font-size:20px;margin:0 0 6px}p{margin:0 0 14px}button{font:bold 15px Arial,sans-serif;background:#f2b53e;color:#1a1206;border:0;border-radius:999px;padding:12px 22px;cursor:pointer}
+#ok{margin-left:10px;color:#3c6e2a;font-weight:bold}#sig{margin-top:18px;border-radius:10px;overflow:hidden}ol{padding-left:20px}</style></head>
+<body><main><h1>Mitsflix email signature</h1>
+<p>Press Copy, then paste it into your email app's signature settings. If Copy doesn't work, select the dark box below, copy it, and paste.</p>
+<button id="copy">Copy signature</button><span id="ok"></span>
+<div id="sig"><table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#0b0b0d;border-top:1px solid #6b5420">
+<tr><td align="center" style="padding:24px 20px 6px"><a href="https://mitsflix.com"><img src="https://mitsflix.com/assets/email-banner.jpg" width="420" alt="Mitsflix: One service. Stream all." style="display:block;width:100%;max-width:420px;height:auto;border:0;color:#f2b53e;font:800 22px Arial,sans-serif"></a></td></tr>
+<tr><td align="center" style="padding:14px 20px 4px;font:bold 19px/1.3 Arial,sans-serif;color:#ffffff">Customer Support &amp; Sales</td></tr>
+<tr><td align="center" style="padding:8px 20px 0;line-height:2.1">
+<a href="https://mitsflix.com" style="color:#f2b53e;font:bold 16px/1.4 Arial,sans-serif;text-decoration:none">mitsflix.com</a><br>
+<a href="mailto:sales@mitsflix.com" style="color:#f2b53e;font:bold 16px/1.4 Arial,sans-serif;text-decoration:none">Email Support</a><br>
+<a href="https://mitsflix.com/facebook" style="color:#f2b53e;font:bold 16px/1.4 Arial,sans-serif;text-decoration:none">Facebook Page</a><br>
+<a href="https://mitsflix.com/discord" style="color:#f2b53e;font:bold 16px/1.4 Arial,sans-serif;text-decoration:none">Join Our Discord Community</a></td></tr>
+<tr><td style="padding:18px 40px 0"><div style="border-top:1px solid #6b5420;line-height:0;font-size:0">&nbsp;</div></td></tr>
+<tr><td align="center" style="padding:20px 20px 4px;font:bold 17px/1.4 Arial,sans-serif;color:#f2b53e">Your entertainment. Our priority.</td></tr>
+<tr><td align="center" style="padding:2px 20px 24px;font:14px/1.6 Arial,sans-serif;color:#d8d2c6">Thank you for choosing Mitsflix.<br>We're here whenever you need assistance at <a href="https://mitsflix.com" style="color:#f2b53e;text-decoration:underline">mitsflix.com</a></td></tr>
+</table></div></main>
+<script>
+document.getElementById('copy').onclick = async () => {
+  const el = document.getElementById('sig'), ok = document.getElementById('ok');
+  try {
+    await navigator.clipboard.write([new ClipboardItem({ 'text/html': new Blob([el.innerHTML], { type: 'text/html' }), 'text/plain': new Blob([el.innerText], { type: 'text/plain' }) })]);
+    ok.textContent = 'Copied';
+  } catch (e) {
+    const r = document.createRange(); r.selectNodeContents(el); const s = getSelection(); s.removeAllRanges(); s.addRange(r);
+    ok.textContent = document.execCommand('copy') ? 'Copied' : 'Selected: copy it now';
+  }
+};
+</script></body></html>
