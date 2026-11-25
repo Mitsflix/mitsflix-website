@@ -8,4 +8,4 @@ jobs:
           echo "POST no origin:"; curl -s -X POST https://mitsflix.com/api/order -H 'content-type: application/json' -d '{}'; echo
           echo "POST null origin:"; curl -s -X POST https://mitsflix.com/api/order -H 'content-type: application/json' -H 'origin: null' -d '{}'; echo
           echo "POST our origin:"; curl -s -X POST https://mitsflix.com/api/order -H 'content-type: application/json' -H 'origin: https://mitsflix.com' -d '{}'; echo
-          echo "POST other site:"; curl -s -X POST https://mitsflix.com/api/order -H 'content-type: application/json' -H 'origin: https://evil.example' -d '{}'; echo
+          echo "POST other site:"; curl -s -X POST https://mitsflix.com/api/order -H 'content-type: application/json' -H 'origin: https://evil.example' -H 'sec-fetch-site: cross-site' -d '{}'; echo
