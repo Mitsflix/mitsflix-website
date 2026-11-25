@@ -5,6 +5,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo "GET renew:"; curl -s "https://mitsflix.com/api/renew?c=test123"; echo
-          echo "POST order (empty, should be rejected):"; curl -s -X POST https://mitsflix.com/api/order -H 'content-type: application/json' -H 'origin: https://mitsflix.com' -d '{}'; echo
-          echo "site.js uses api:"; curl -s https://mitsflix.com/assets/site.js | grep -c "api('renew"
+          echo "POST no origin:"; curl -s -X POST https://mitsflix.com/api/order -H 'content-type: application/json' -d '{}'; echo
+          echo "POST null origin:"; curl -s -X POST https://mitsflix.com/api/order -H 'content-type: application/json' -H 'origin: null' -d '{}'; echo
+          echo "POST our origin:"; curl -s -X POST https://mitsflix.com/api/order -H 'content-type: application/json' -H 'origin: https://mitsflix.com' -d '{}'; echo
+          echo "POST other site:"; curl -s -X POST https://mitsflix.com/api/order -H 'content-type: application/json' -H 'origin: https://evil.example' -d '{}'; echo

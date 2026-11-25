@@ -54,7 +54,17 @@ export default {
     if (url.pathname.startsWith('/subs/')) return subtitles(req, env, url);
     // Sign-up, trial and renewal forms: handed to the bot as they are (visitor IP and location included).
     const api = url.pathname.match(/^\/api\/(order|trial|renew)$/);
-    if (api && env.TICKETS) return env.TICKETS.fetch(new Request('https://mitsflix-tickets/' + api[1] + url.search, req));
+    if (api && env.TICKETS) {
+      // In-app browsers (Messenger, Instagram) sometimes leave out or blank the Origin header on our own
+      // page's requests. Turn away other websites only; then tell the bot it came from mitsflix.com.
+      const origin = req.headers.get('origin') || '';
+      const site = req.headers.get('sec-fetch-site') || '';
+      if ((origin && origin !== 'null' && !/^https:\/\/(www\.)?mitsflix\.com$/.test(origin)) || site === 'cross-site')
+        return new Response(JSON.stringify({ ok: false, error: 'Please use the form on mitsflix.com.' }), { status: 403, headers: { 'content-type': 'application/json' } });
+      const fwd = new Request('https://mitsflix-tickets/' + api[1] + url.search, req);
+      fwd.headers.set('origin', 'https://mitsflix.com');
+      return env.TICKETS.fetch(fwd);
+    }
     const path = url.pathname.replace(/\/+$/, '').toLowerCase();
     if (LINKS[path]) return Response.redirect(LINKS[path], 302);
     const file = FILES[path];
