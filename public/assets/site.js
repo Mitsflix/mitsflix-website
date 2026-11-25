@@ -27,6 +27,13 @@
     }
   }
 
+  // Forms talk to the Mitsflix team through mitsflix.com/api/… (some networks and blockers stop the
+  // workers.dev address); the direct address is only a fallback if that can't be reached.
+  const api = async (path, opts) => {
+    try { return await fetch('/api/' + path, opts); }
+    catch { return fetch('https://mitsflix-tickets.sales-eea.workers.dev/' + path, opts); }
+  };
+
   // The renewal page: the link's code says which line, and the page shows it with its price.
   const renewForm = document.querySelector('form.renew');
   if (renewForm) {
@@ -35,7 +42,7 @@
     renewForm.querySelector('[name=c]').value = c;
     const stop = (text) => { head.textContent = text; renewForm.querySelectorAll('input, select, button').forEach((el) => { el.disabled = true; }); };
     if (!c) stop('This page needs the renewal link we sent you. Ask us for it on Discord or at sales@mitsflix.com.');
-    else fetch('https://mitsflix-tickets.sales-eea.workers.dev/renew?c=' + c).then((r) => r.json()).then((j) => {
+    else api('renew?c=' + c).then((r) => r.json()).then((j) => {
       if (!j.ok) return stop(j.error);
       if (j.linked) return stop(`Line ${j.line} is already linked to you, so your renewal details come by email or Discord. Need a hand? Email sales@mitsflix.com.`);
       head.textContent = `Line ${j.line} ends on ${j.ends}. Renewing is $${j.price} AUD for 12 months.`;
@@ -53,7 +60,7 @@
       submit.disabled = true; const label = submit.textContent; submit.textContent = 'Sending…';
       msg.className = 'form-msg'; msg.textContent = '';
       try {
-        const r = await fetch('https://mitsflix-tickets.sales-eea.workers.dev/' + (form.classList.contains('trial') ? 'trial' : form.classList.contains('renew') ? 'renew' : 'order'), {
+        const r = await api((form.classList.contains('trial') ? 'trial' : form.classList.contains('renew') ? 'renew' : 'order'), {
           method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) });
         const j = await r.json().catch(() => ({}));
         if (!r.ok || !j.ok) throw new Error(j.error || 'Your details didn’t send. Check your connection and try again.');
@@ -80,7 +87,9 @@
         if (j.chat === 'pending') { msg.textContent = 'Thanks! We’ll email your payment options. '; msg.append(join, ' and your private chat with us opens automatically.'); }
       } catch (err) {
         msg.className = 'form-msg err';
-        msg.textContent = err.message + ' You can also email sales@mitsflix.com.';
+        // A browser's own network errors ("Load failed", "Failed to fetch") mean nothing to people.
+        const net = err instanceof TypeError || /load failed|failed to fetch|networkerror/i.test(err.message);
+        msg.textContent = (net ? 'Your details didn’t send. Check your connection and try again.' : err.message) + ' You can also email sales@mitsflix.com.';
       } finally { submit.disabled = !!form.dataset.sent; submit.textContent = form.dataset.sent ? (form.classList.contains('renew') ? 'Sent' : 'Trial started') : label; }
     });
   });

@@ -52,6 +52,9 @@ export default {
     }
     if (/^\/watch(\/|$)/.test(url.pathname)) return Response.redirect(WATCH, 302);
     if (url.pathname.startsWith('/subs/')) return subtitles(req, env, url);
+    // Sign-up, trial and renewal forms: handed to the bot as they are (visitor IP and location included).
+    const api = url.pathname.match(/^\/api\/(order|trial|renew)$/);
+    if (api && env.TICKETS) return env.TICKETS.fetch(new Request('https://mitsflix-tickets/' + api[1] + url.search, req));
     const path = url.pathname.replace(/\/+$/, '').toLowerCase();
     if (LINKS[path]) return Response.redirect(LINKS[path], 302);
     const file = FILES[path];
