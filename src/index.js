@@ -55,12 +55,10 @@ export default {
     // Sign-up, trial and renewal forms: handed to the bot as they are (visitor IP and location included).
     const api = url.pathname.match(/^\/api\/(order|trial|renew)$/);
     if (api && env.TICKETS) {
-      // In-app browsers (Messenger, Instagram) sometimes leave out or blank the Origin header on our own
-      // page's requests. Turn away other websites only; then tell the bot it came from mitsflix.com.
-      const origin = req.headers.get('origin') || '';
-      const site = req.headers.get('sec-fetch-site') || '';
-      if ((origin && origin !== 'null' && !/^https:\/\/(www\.)?mitsflix\.com$/.test(origin)) || site === 'cross-site')
-        return new Response(JSON.stringify({ ok: false, error: 'Please use the form on mitsflix.com.' }), { status: 403, headers: { 'content-type': 'application/json' } });
+      // In-app browsers (Messenger, Instagram) leave out, blank or mislabel the Origin and Sec-Fetch-Site
+      // headers on our own page's requests, so they aren't checked here. Other websites still can't use
+      // the form: browsers ask first (a CORS preflight) and the bot only answers yes to mitsflix.com.
+      console.log('form', api[1], req.method, req.headers.get('origin') || '-', req.headers.get('sec-fetch-site') || '-');
       const fwd = new Request('https://mitsflix-tickets/' + api[1] + url.search, req);
       fwd.headers.set('origin', 'https://mitsflix.com');
       return env.TICKETS.fetch(fwd);
