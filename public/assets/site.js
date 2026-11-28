@@ -29,11 +29,12 @@
 
   // Sign-up form: an additional line asks which existing account it's for.
   document.querySelectorAll('.plan-pick').forEach((sel) => {
-    const form = sel.form, box = form.querySelector('.existing-acct'), input = box && box.querySelector('input');
+    const form = sel.form, boxes = form.querySelectorAll('.existing-acct'), input = form.querySelector('input[name="existing"]');
     const ref = form.querySelector('input[name="ref"]'), refBox = ref && ref.closest('label');
     const sync = () => {
       const extra = sel.value === 'extra';
-      if (box) { box.hidden = !extra; input.required = extra; }
+      boxes.forEach((b) => { b.hidden = !extra; });
+      if (input) input.required = extra;
       if (refBox) refBox.hidden = extra;   // referrals are for new customers
     };
     sel.addEventListener('change', sync);

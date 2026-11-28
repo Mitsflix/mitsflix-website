@@ -246,6 +246,7 @@ PRICING = '''
     <label class="full">What would you like?
       <select name="plan" class="plan-pick"><option value="new">New subscription ($100 a year)</option><option value="extra">Extra line on my account ($80 a year)</option></select></label>
     <label class="full existing-acct" hidden>Your existing account <small>Your email, Discord username or Mitsflix username, so we can link the new line to it</small><input name="existing" maxlength="120" autocapitalize="none" autocomplete="off" spellcheck="false"></label>
+    <label class="full existing-acct" hidden>Password for that line <small>Only if you entered your Mitsflix username. It’s in your app’s playlist settings, and lets us link your lines straight away</small><input name="existingPass" maxlength="64" autocapitalize="none" autocomplete="off" spellcheck="false"></label>
     <label>Name<input name="name" autocomplete="name" required maxlength="100"></label>
     <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
     <label>Phone or WhatsApp <small>Optional</small><input name="phone" autocomplete="tel" maxlength="40"></label>
