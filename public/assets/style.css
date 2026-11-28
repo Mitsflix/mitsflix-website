@@ -120,6 +120,7 @@ code { font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; }
 form.order { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 20px; max-width: 760px; }
 form.order .full { grid-column: 1 / -1; }
 label { display: grid; gap: 6px; font-weight: 600; font-size: .95rem; }
+[hidden] { display: none !important; }
 label small { font-weight: 400; color: var(--muted); }
 input, select, textarea { font: 16px var(--body); color: var(--ivory); background: var(--panel); border: 1px solid #4b3a18; border-radius: 10px; padding: 12px 14px; width: 100%; }
 textarea { min-height: 96px; resize: vertical; }

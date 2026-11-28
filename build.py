@@ -243,6 +243,9 @@ PRICING = '''
   </div>
   <form class="order" data-done="Thanks! We’ve got your details and will email you payment options shortly.">
     <input type="hidden" name="kind" value="signup">
+    <label class="full">What would you like?
+      <select name="plan" class="plan-pick"><option value="new">New subscription: 12 months, $100 AUD</option><option value="extra">Additional line for my existing account: 12 months, $80 AUD</option></select></label>
+    <label class="full existing-acct" hidden>Your existing account <small>Your email, Discord username or Mitsflix username, so we can link the new line to it</small><input name="existing" maxlength="120" autocapitalize="none" autocomplete="off" spellcheck="false"></label>
     <label>Name<input name="name" autocomplete="name" required maxlength="100"></label>
     <label>Email<input name="email" type="email" autocomplete="email" required maxlength="200"></label>
     <label>Phone or WhatsApp <small>Optional</small><input name="phone" autocomplete="tel" maxlength="40"></label>

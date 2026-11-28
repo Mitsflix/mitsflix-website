@@ -27,6 +27,20 @@
     }
   }
 
+  // Sign-up form: an additional line asks which existing account it's for.
+  document.querySelectorAll('.plan-pick').forEach((sel) => {
+    const form = sel.form, box = form.querySelector('.existing-acct'), input = box && box.querySelector('input');
+    const ref = form.querySelector('input[name="ref"]'), refBox = ref && ref.closest('label');
+    const sync = () => {
+      const extra = sel.value === 'extra';
+      if (box) { box.hidden = !extra; input.required = extra; }
+      if (refBox) refBox.hidden = extra;   // referrals are for new customers
+    };
+    sel.addEventListener('change', sync);
+    if (new URLSearchParams(location.search).get('plan') === 'extra') sel.value = 'extra';
+    sync();
+  });
+
   // Forms talk to the Mitsflix team through mitsflix.com/api/… (some networks and blockers stop the
   // workers.dev address); the direct address is only a fallback if that can't be reached.
   const api = async (path, opts) => {
